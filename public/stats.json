@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-01 06:37:05 UTC",
+ "updated": "2026-11-01 07:07:56 UTC",
  "scraped": 241,
  "parsed": 234,
  "protocols": {
@@ -9,35 +9,37 @@
   "hysteria2": 2,
   "vless": 4
  },
- "alive": 124,
+ "alive": 81,
  "unprobed_skipped": 0,
- "exit_ip_fallback_dns": 1,
+ "exit_ip_fallback_dns": 2,
  "unique_ip": true,
- "ip_duplicates_removed": 33,
+ "ip_duplicates_removed": 34,
+ "subnet_duplicates_removed": 41,
+ "max_per_subnet": 3,
  "published": 80,
- "avg_latency": 1.551,
+ "avg_latency": 2.842,
  "best": [
   {
-   "name": "美国+得克萨斯州",
-   "host": "starlink-ft.251313.xyz",
-   "port": 443,
-   "exit_ip": "170.9.1.136",
+   "name": "🇨🇦CA-51.222.12.127-0237",
+   "host": "51.222.12.127",
+   "port": 445,
+   "exit_ip": "51.222.12.127",
    "ip_src": "echo",
-   "latency": 0.298,
-   "proto": "hysteria2",
-   "engine": "singbox",
-   "history_ok": 1
+   "latency": 1.046,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 2
   },
   {
-   "name": "🏁RELAY-104.21.7.133-1239",
-   "host": "104.21.7.133",
-   "port": 80,
-   "exit_ip": "64.181.219.110",
+   "name": "美国+CloudFlare节点",
+   "host": "cfnode-11ivy8.pages.dev",
+   "port": 443,
+   "exit_ip": "104.28.164.155",
    "ip_src": "echo",
-   "latency": 1.066,
-   "proto": "vmess",
+   "latency": 1.062,
+   "proto": "vless",
    "engine": "xray",
-   "history_ok": 1
+   "history_ok": 2
   },
   {
    "name": "🇨🇦CA-51.222.136.236-0214",
@@ -45,32 +47,21 @@
    "port": 8882,
    "exit_ip": "51.222.136.236",
    "ip_src": "echo",
-   "latency": 1.074,
+   "latency": 1.076,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 1
+   "history_ok": 2
   },
   {
-   "name": "美国+CloudFlare节点",
-   "host": "cfnode-11ivy8.pages.dev",
-   "port": 443,
-   "exit_ip": "104.28.167.107",
+   "name": "🏁RELAY-104.21.7.133-1239",
+   "host": "104.21.7.133",
+   "port": 80,
+   "exit_ip": "64.181.219.110",
    "ip_src": "echo",
-   "latency": 1.09,
-   "proto": "vless",
+   "latency": 1.097,
+   "proto": "vmess",
    "engine": "xray",
-   "history_ok": 1
-  },
-  {
-   "name": "🇨🇦CA-51.222.12.127-0237",
-   "host": "51.222.12.127",
-   "port": 445,
-   "exit_ip": "51.222.12.127",
-   "ip_src": "echo",
-   "latency": 1.108,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 1
+   "history_ok": 2
   },
   {
    "name": "🇺🇸US-216.105.168.18-6043",
@@ -78,54 +69,65 @@
    "port": 443,
    "exit_ip": "216.105.168.18",
    "ip_src": "echo",
-   "latency": 1.158,
+   "latency": 1.135,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 1
+   "history_ok": 2
   },
   {
-   "name": "🇨🇳CN-47.88.79.34-1231",
-   "host": "47.88.79.34",
-   "port": 443,
-   "exit_ip": "47.88.79.34",
-   "ip_src": "echo",
-   "latency": 1.174,
-   "proto": "vmess",
-   "engine": "xray",
-   "history_ok": 1
-  },
-  {
-   "name": "🇨🇦CA-51.79.64.198-0437",
-   "host": "51.79.64.198",
-   "port": 8119,
-   "exit_ip": "51.79.64.198",
-   "ip_src": "echo",
-   "latency": 1.205,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 1
-  },
-  {
-   "name": "🇳🇱NL-193.29.139.168-0112",
-   "host": "193.29.139.168",
+   "name": "🇳🇱NL-193.29.139.151-0180",
+   "host": "193.29.139.151",
    "port": 8080,
-   "exit_ip": "193.29.139.168",
+   "exit_ip": "193.29.139.151",
    "ip_src": "echo",
-   "latency": 1.229,
+   "latency": 1.19,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 1
+   "history_ok": 2
   },
   {
-   "name": "🇬🇧GB-82.38.31.155-0188",
-   "host": "82.38.31.155",
+   "name": "🇬🇧GB-178.83.185.156-0178",
+   "host": "178.83.185.156",
    "port": 8080,
    "exit_ip": "193.29.139.236",
    "ip_src": "echo",
-   "latency": 1.232,
+   "latency": 1.191,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 1
+   "history_ok": 2
+  },
+  {
+   "name": "🇬🇧GB-82.38.31.3-0187",
+   "host": "82.38.31.3",
+   "port": 8080,
+   "exit_ip": "193.29.139.157",
+   "ip_src": "echo",
+   "latency": 1.192,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 2
+  },
+  {
+   "name": "🇫🇷FR-54.36.174.140-0203",
+   "host": "54.36.174.140",
+   "port": 443,
+   "exit_ip": "54.36.174.140",
+   "ip_src": "echo",
+   "latency": 1.211,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 2
+  },
+  {
+   "name": "🇫🇷FR-51.83.192.80-0168",
+   "host": "51.83.192.80",
+   "port": 8388,
+   "exit_ip": "51.83.192.80",
+   "ip_src": "echo",
+   "latency": 1.212,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 2
   }
  ]
 }
