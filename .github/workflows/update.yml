@@ -1,0 +1,64 @@
+name: subhub
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: subhub
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 安装 Xray
+        run: |
+          set -e
+          VER=$(curl -sSL https://api.github.com/repos/XTLS/Xray-core/releases/latest | grep -oP '"tag_name":\s*"\K[^"]+')
+          echo "Xray version: $VER"
+          curl -sSL "https://github.com/XTLS/Xray-core/releases/download/${VER}/Xray-linux-64.zip" -o xray.zip
+          unzip -o xray.zip xray > /dev/null
+          chmod +x xray
+          sudo mv xray /usr/local/bin/xray
+          xray version | head -1
+
+      - name: 安装 sing-box（hysteria2 / tuic 测活用）
+        run: |
+          set -e
+          VER=$(curl -sSL https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep -oP '"tag_name":\s*"v\K[^"]+')
+          echo "sing-box version: $VER"
+          curl -sSL "https://github.com/SagerNet/sing-box/releases/download/v${VER}/sing-box-${VER}-linux-amd64.tar.gz" -o sb.tar.gz
+          tar xzf sb.tar.gz
+          sudo mv "sing-box-${VER}-linux-amd64/sing-box" /usr/local/bin/sing-box
+          chmod +x /usr/local/bin/sing-box
+          sing-box version | head -3 || true
+
+      - name: 语法校验
+        run: python3 -m py_compile subhub.py && echo "syntax ok"
+
+      - name: 抓取 + 测速 + 生成订阅
+        env:
+          WORKERS: "10"
+          PROBE_TIMEOUT: "8"
+          KEEP: "80"
+          UNIQUE_IP: "1"
+        run: python3 subhub.py
+
+      - name: 提交结果
+        run: |
+          git config user.name  "subhub-bot"
+          git config user.email "subhub-bot@users.noreply.github.com"
+          git add public state
+          if git diff --staged --quiet; then
+            echo "无变化"
+          else
+            git commit -m "chore: update subscription $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
