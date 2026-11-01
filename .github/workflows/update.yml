@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    timeout-minutes: 40
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
@@ -45,13 +45,13 @@ jobs:
 
       - name: 抓取 + 测速 + 生成订阅
         env:
-          WORKERS: "12"
-          PROBE_TIMEOUT: "6"
-          KEEP: "500"
-          MAX_NODES: "8000"
+          WORKERS: "24"
+          PROBE_TIMEOUT: "5"
+          KEEP: "1000"
+          MAX_NODES: "12000"
           MAX_PER_SUBNET: "999"
           LATENCY_MAX: "0"
-          UNIQUE_IP: "0"
+          UNIQUE_IP: "1"
           INCLUDE_UNPROBED: "0"
         run: python3 subhub.py
 
