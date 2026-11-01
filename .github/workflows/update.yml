@@ -45,10 +45,14 @@ jobs:
 
       - name: 抓取 + 测速 + 生成订阅
         env:
-          WORKERS: "10"
-          PROBE_TIMEOUT: "8"
-          KEEP: "80"
-          UNIQUE_IP: "1"
+          WORKERS: "12"
+          PROBE_TIMEOUT: "6"
+          KEEP: "500"
+          MAX_NODES: "8000"
+          MAX_PER_SUBNET: "999"
+          LATENCY_MAX: "0"
+          UNIQUE_IP: "0"
+          INCLUDE_UNPROBED: "0"
         run: python3 subhub.py
 
       - name: 提交结果
