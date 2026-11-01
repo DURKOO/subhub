@@ -555,6 +555,18 @@ def collect():
             print("[+] %-70s %5d 行" % (url[:70], n))
         except Exception as e:
             print("[!] %-70s %s" % (url[:70], e))
+    # 读取本地附加节点池（config/extra_nodes.txt）
+    extra = CONF / "extra_nodes.txt"
+    if extra.exists():
+        n = 0
+        for line in extra.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if "://" in line and not line.startswith("#"):
+                lines.append(line)
+                n += 1
+        print("[+] %-70s %5d 行（本地附加）" % ("config/extra_nodes.txt", n))
+    else:
+        print("[!] config/extra_nodes.txt 不存在")
     return lines
 
 
