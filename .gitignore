@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.bak
+xray
+sing-box
+xray.zip
+sb.tar.gz
+*.tar.gz
+!public/.gitkeep
+!state/.gitkeep
