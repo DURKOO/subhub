@@ -46,10 +46,10 @@ XRAY_BIN = os.environ.get("XRAY_BIN", "xray")
 SINGBOX_BIN = os.environ.get("SINGBOX_BIN", "sing-box")
 WORKERS = int(os.environ.get("WORKERS", "8"))
 TIMEOUT = float(os.environ.get("PROBE_TIMEOUT", "8"))
-KEEP = int(os.environ.get("KEEP", "80"))
+KEEP = int(os.environ.get("KEEP", "200"))
 UNIQUE_IP = os.environ.get("UNIQUE_IP", "1") not in ("0", "false", "False", "")
-MAX_PER_SUBNET = int(os.environ.get("MAX_PER_SUBNET", "3"))  # 同一 /24 最多保留几个
-LATENCY_MAX = float(os.environ.get("LATENCY_MAX", "5.0"))    # 延迟上限(秒)，0 表示不限
+MAX_PER_SUBNET = int(os.environ.get("MAX_PER_SUBNET", "6"))  # 同一 /24 最多保留几个
+LATENCY_MAX = float(os.environ.get("LATENCY_MAX", "8.0"))    # 延迟上限(秒)，0 表示不限
 
 INCLUDE_UNPROBED = os.environ.get("INCLUDE_UNPROBED", "0") in ("1", "true", "True")
 MAX_NODES = int(os.environ.get("MAX_NODES", "800"))
@@ -818,7 +818,22 @@ def main():
         fail = h.get("fail", 0)
         bonus = min(ok, 25) * 0.12       # 历史稳定最多 -3s
         penalty = min(fail, 50) * 0.05   # 历史失败最多 +2.5s
-        return n["latency"] - bonus + penalty
+        # 国内可达性加权：CF 泛播 IP 与 443/80 端口在国内存活率最高；
+        # 19999/8388/8080 等非常规端口在国内基本全封，排到后面。
+        _cf = str(n.get("host") or "").startswith((
+            "104.16.", "104.17.", "104.18.", "104.19.", "104.20.", "104.21.",
+            "104.22.", "104.23.", "104.24.", "104.25.", "104.26.", "104.27.",
+            "172.64.", "172.65.", "172.66.", "172.67.", "162.159.",
+            "188.114.", "197.234.", "198.41."))
+        _port = int(n.get("port") or 0)
+        cn = 0.0
+        if _cf:
+            cn -= 2.0
+        if _port in (443, 80, 8443, 2053, 2083, 2087, 2096):
+            cn -= 0.8
+        if _port in (19999, 8388, 8080, 8888, 7001, 990, 47443):
+            cn += 1.5
+        return n["latency"] - bonus + penalty + cn
 
     results.sort(key=score)
 
