@@ -49,6 +49,8 @@ TIMEOUT = float(os.environ.get("PROBE_TIMEOUT", "8"))
 KEEP = int(os.environ.get("KEEP", "80"))
 UNIQUE_IP = os.environ.get("UNIQUE_IP", "1") not in ("0", "false", "False", "")
 MAX_PER_SUBNET = int(os.environ.get("MAX_PER_SUBNET", "3"))  # 同一 /24 最多保留几个
+LATENCY_MAX = float(os.environ.get("LATENCY_MAX", "3.0"))    # 延迟上限(秒)，0 表示不限
+
 INCLUDE_UNPROBED = os.environ.get("INCLUDE_UNPROBED", "0") in ("1", "true", "True")
 MAX_NODES = int(os.environ.get("MAX_NODES", "800"))
 OK_DECAY = float(os.environ.get("OK_DECAY", "0.95"))
@@ -820,6 +822,19 @@ def main():
 
     results.sort(key=score)
 
+    # ---------- 延迟上限：超过 LATENCY_MAX 的慢节点直接淘汰 ----------
+    # 存活数不足 KEEP 时，排序无法兜底，5~8 秒的慢节点会全部进订阅（实测把均延迟从 1.55s 拉到 2.84s）。
+    latency_dropped = 0
+    if LATENCY_MAX > 0:
+        before = len(results)
+        results = [n for n in results if n["latency"] <= LATENCY_MAX]
+        latency_dropped = before - len(results)
+        print("   延迟上限 %.1fs: 淘汰 %d 个慢节点，剩 %d"
+              % (LATENCY_MAX, latency_dropped, len(results)))
+        if not results:
+            print("[x] 全部节点超过延迟上限，放宽 LATENCY_MAX 或保留上一次订阅")
+            return 1
+
     # ---------- 唯一出口 IP 去重：同 IP 只保留分数最优的一个 ----------
     dup_removed = 0
     if UNIQUE_IP:
@@ -879,6 +894,8 @@ def main():
         "exit_ip_fallback_dns": ip_unknown,
         "unique_ip": UNIQUE_IP,
         "ip_duplicates_removed": dup_removed,
+        "latency_max": LATENCY_MAX,
+        "latency_dropped": latency_dropped,
         "subnet_duplicates_removed": subnet_removed,
         "max_per_subnet": MAX_PER_SUBNET,
         "published": len(keep),
