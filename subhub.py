@@ -49,7 +49,7 @@ TIMEOUT = float(os.environ.get("PROBE_TIMEOUT", "8"))
 KEEP = int(os.environ.get("KEEP", "80"))
 UNIQUE_IP = os.environ.get("UNIQUE_IP", "1") not in ("0", "false", "False", "")
 MAX_PER_SUBNET = int(os.environ.get("MAX_PER_SUBNET", "3"))  # 同一 /24 最多保留几个
-LATENCY_MAX = float(os.environ.get("LATENCY_MAX", "3.0"))    # 延迟上限(秒)，0 表示不限
+LATENCY_MAX = float(os.environ.get("LATENCY_MAX", "5.0"))    # 延迟上限(秒)，0 表示不限
 
 INCLUDE_UNPROBED = os.environ.get("INCLUDE_UNPROBED", "0") in ("1", "true", "True")
 MAX_NODES = int(os.environ.get("MAX_NODES", "800"))
