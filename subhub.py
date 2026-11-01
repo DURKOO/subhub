@@ -48,6 +48,7 @@ WORKERS = int(os.environ.get("WORKERS", "8"))
 TIMEOUT = float(os.environ.get("PROBE_TIMEOUT", "8"))
 KEEP = int(os.environ.get("KEEP", "80"))
 UNIQUE_IP = os.environ.get("UNIQUE_IP", "1") not in ("0", "false", "False", "")
+MAX_PER_SUBNET = int(os.environ.get("MAX_PER_SUBNET", "3"))  # 同一 /24 最多保留几个
 INCLUDE_UNPROBED = os.environ.get("INCLUDE_UNPROBED", "0") in ("1", "true", "True")
 MAX_NODES = int(os.environ.get("MAX_NODES", "800"))
 OK_DECAY = float(os.environ.get("OK_DECAY", "0.95"))
@@ -836,6 +837,30 @@ def main():
         print("   唯一出口 IP 去重: 移除 %d 个同 IP 节点，剩 %d"
               % (dup_removed, len(results)))
 
+    # ---------- 网段去重：同一 /24 最多保留 MAX_PER_SUBNET 个 ----------
+    # 免费源里常见机场批量分发同一 /24 的大量 IP（实测 80 个节点中 37 个来自两个 /24），
+    # 这些节点共享同一上游出口和同一封锁策略，一旦该段被墙会集体失效。
+    subnet_removed = 0
+    if MAX_PER_SUBNET > 0:
+        subnet_cnt = {}
+        subnet_uniq = []
+        for n in results:
+            ip = n.get("exit_ip") or ""
+            parts = ip.split(".")
+            if len(parts) == 4 and all(p.isdigit() for p in parts):
+                sk = ".".join(parts[:3])          # /24
+            else:
+                sk = "host:" + n["host"]          # 域名/未知 IP 各自独立
+            c = subnet_cnt.get(sk, 0)
+            if c >= MAX_PER_SUBNET:
+                subnet_removed += 1
+                continue
+            subnet_cnt[sk] = c + 1
+            subnet_uniq.append(n)
+        results = subnet_uniq
+        print("   网段去重(/24 上限 %d): 移除 %d 个，剩 %d"
+              % (MAX_PER_SUBNET, subnet_removed, len(results)))
+
     keep = results[:max(1, KEEP)]   # 防止 KEEP<=0 导致空订阅 / 后续除零
 
     print("== 4. 输出订阅 ==")
@@ -854,6 +879,8 @@ def main():
         "exit_ip_fallback_dns": ip_unknown,
         "unique_ip": UNIQUE_IP,
         "ip_duplicates_removed": dup_removed,
+        "subnet_duplicates_removed": subnet_removed,
+        "max_per_subnet": MAX_PER_SUBNET,
         "published": len(keep),
         "avg_latency": round(sum(n["latency"] for n in keep) / len(keep), 3),
         "best": [
