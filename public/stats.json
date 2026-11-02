@@ -1,48 +1,48 @@
 {
- "updated": "2026-11-02 11:21:19 UTC",
- "scraped": 5798,
- "parsed": 4268,
+ "updated": "2026-11-02 14:04:25 UTC",
+ "scraped": 5794,
+ "parsed": 4213,
  "protocols": {
-  "shadowsocks": 1646,
-  "trojan": 715,
-  "vmess": 1494,
+  "shadowsocks": 1622,
+  "trojan": 713,
+  "vmess": 1483,
   "shadowsocksr": 58,
   "hysteria2": 47,
-  "vless": 308
+  "vless": 290
  },
- "alive": 40,
+ "alive": 21,
  "unprobed_skipped": 0,
- "exit_ip_fallback_dns": 1176,
+ "exit_ip_fallback_dns": 1161,
  "unique_ip": true,
- "ip_duplicates_removed": 26,
+ "ip_duplicates_removed": 27,
  "latency_max": 1.5,
  "latency_dropped": 0,
- "subnet_duplicates_removed": 36,
+ "subnet_duplicates_removed": 32,
  "max_per_subnet": 2,
- "published": 40,
- "avg_latency": 0.122,
+ "published": 21,
+ "avg_latency": 0.136,
  "best": [
+  {
+   "name": "🇬🇧GB-82.38.31.174-0229",
+   "host": "82.38.31.174",
+   "port": 443,
+   "exit_ip": "193.29.139.135",
+   "ip_src": "echo",
+   "latency": 0.082,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 22
+  },
   {
    "name": "🇬🇧GB-82.38.31.162-0174",
    "host": "82.38.31.162",
    "port": 443,
    "exit_ip": "193.29.139.221",
    "ip_src": "echo",
-   "latency": 0.092,
+   "latency": 0.085,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 21
-  },
-  {
-   "name": "🇬🇧GB-82.38.31.170-0222",
-   "host": "82.38.31.170",
-   "port": 443,
-   "exit_ip": "193.29.139.172",
-   "ip_src": "echo",
-   "latency": 0.093,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 21
+   "history_ok": 22
   },
   {
    "name": "🇺🇸US-198.98.53.130-0239",
@@ -50,10 +50,10 @@
    "port": 443,
    "exit_ip": "198.98.53.130",
    "ip_src": "echo",
-   "latency": 0.008,
+   "latency": 0.013,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 20
+   "history_ok": 21
   },
   {
    "name": "🇪🇬EG-38.54.59.102-0186",
@@ -61,21 +61,10 @@
    "port": 443,
    "exit_ip": "38.54.59.102",
    "ip_src": "echo",
-   "latency": 0.124,
+   "latency": 0.121,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 13
-  },
-  {
-   "name": "🇬🇧GB-104.239.12.81-0230",
-   "host": "sql.popmintxo.cc",
-   "port": 43385,
-   "exit_ip": "104.239.12.81",
-   "ip_src": "echo",
-   "latency": 0.227,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 20
+   "history_ok": 14
   },
   {
    "name": "🇵🇱[www.v2nodes.com] vless-PL-1... #2",
@@ -83,10 +72,10 @@
    "port": 443,
    "exit_ip": "82.202.197.72",
    "ip_src": "echo",
-   "latency": 0.129,
+   "latency": 0.12,
    "proto": "vless",
    "engine": "xray",
-   "history_ok": 12
+   "history_ok": 13
   },
   {
    "name": "🇺🇸204811 | ⚡️Telegram = t.me/S...",
@@ -94,10 +83,10 @@
    "port": 443,
    "exit_ip": "185.8.107.23",
    "ip_src": "echo",
-   "latency": 0.017,
+   "latency": 0.018,
    "proto": "hysteria2",
    "engine": "singbox",
-   "history_ok": 9
+   "history_ok": 10
   },
   {
    "name": "🎃91@oneclickvpnkeys",
@@ -105,21 +94,21 @@
    "port": 443,
    "exit_ip": "109.234.36.245",
    "ip_src": "echo",
-   "latency": 0.083,
+   "latency": 0.119,
+   "proto": "hysteria2",
+   "engine": "singbox",
+   "history_ok": 10
+  },
+  {
+   "name": "伊朗+V2CROSS.COM",
+   "host": "217.60.73.56",
+   "port": 443,
+   "exit_ip": "217.60.72.225",
+   "ip_src": "echo",
+   "latency": 0.099,
    "proto": "hysteria2",
    "engine": "singbox",
    "history_ok": 9
-  },
-  {
-   "name": "🇺🇸[www.v2nodes.com] vless-US-1... #2",
-   "host": "us3.shtil.io",
-   "port": 443,
-   "exit_ip": "85.155.179.206",
-   "ip_src": "echo",
-   "latency": 0.076,
-   "proto": "vless",
-   "engine": "xray",
-   "history_ok": 8
   },
   {
    "name": "vless-1854038780",
@@ -130,7 +119,18 @@
    "latency": 0.007,
    "proto": "vless",
    "engine": "xray",
-   "history_ok": 6
+   "history_ok": 7
+  },
+  {
+   "name": "🇮🇳IN-139.84.210.39-0215",
+   "host": "in002.zestapp778.com",
+   "port": 42733,
+   "exit_ip": "139.84.145.241",
+   "ip_src": "echo",
+   "latency": 0.217,
+   "proto": "trojan",
+   "engine": "xray",
+   "history_ok": 16
   }
  ]
 }
