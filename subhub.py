@@ -522,6 +522,9 @@ def parse_uri(uri):
             # 过滤 Cloudflare 中转/回源 IP 段（本地测活会被 403/EOF 打挂）
             if host.startswith(("104.16.", "104.17.", "104.18.", "104.19.", "104.20.", "104.21.", "104.22.", "104.23.", "104.24.", "104.25.", "104.26.", "104.27.", "104.28.", "104.29.", "104.30.", "104.31.", "172.64.", "172.65.", "172.66.", "172.67.", "172.68.", "172.69.", "172.70.", "172.71.", "162.159.", "188.114.")):
                 return None
+            # 端口强约束：只保留标准 Web 端口，剔除高端口临时节点
+            if port not in (443, 80, 8443, 2053, 2083, 2087, 2096, 8880, 8080):
+                return None
             proto = out.get("protocol") or out.get("type") or ""
             # 用完整出站对象的规范化哈希做去重键：同 host:port 但不同 uuid / 密码 /
             # sni / reality pbk / grpc serviceName 的是不同节点，不能被互相覆盖丢掉
@@ -706,6 +709,14 @@ def probe(node):
         except Exception:
             return None, None
 
+
+        # 微软域名真实访问验证：确保节点能打开 outlook.com，这样才能过微软人机验证
+        try:
+            data = socks5_http(port, "www.outlook.com", "/", TIMEOUT, 80)
+            if not data or not re.match(rb"HTTP/1\.[01] (200|301|302)", data):
+                return None, None
+        except Exception:
+            return None, None
         t0 = time.time()
         exit_ip = get_exit_ip(port, TIMEOUT)
         if not exit_ip:
