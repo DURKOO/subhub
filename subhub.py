@@ -55,8 +55,12 @@ INCLUDE_UNPROBED = os.environ.get("INCLUDE_UNPROBED", "0") in ("1", "true", "Tru
 MAX_NODES = int(os.environ.get("MAX_NODES", "800"))
 OK_DECAY = float(os.environ.get("OK_DECAY", "0.95"))
 
-PROBE_HOST = "www.gstatic.com"
-PROBE_PATH = "/generate_204"
+PROBE_ENDPOINTS = [
+    ("www.gstatic.com", "/generate_204"),
+    ("connectivitycheck.gstatic.com", "/generate_204"),
+    ("www.google.com", "/generate_204"),
+    ("cp.cloudflare.com", "/generate_204"),
+]
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 
 XRAY_AVAILABLE = bool(shutil.which(XRAY_BIN) or Path(XRAY_BIN).exists())
@@ -691,17 +695,24 @@ def probe(node):
             return None, None
 
         # 连续两次探测取最小延迟：失败不覆盖 best，也不提前 break（原实现恒定只探一次）
+        # 多端点探测：至少 2 个端点返回 200/204/301/302 才判活
+        ok_count = 0
         for _ in range(2):
-            t0 = time.time()
-            try:
-                data = socks5_http(port, PROBE_HOST, PROBE_PATH, TIMEOUT)
-            except Exception:
-                data = None
-            if data and re.match(rb"HTTP/1\.[01] (200|204|301|302)", data):
-                dt = time.time() - t0
-                best = dt if best is None else min(best, dt)
-            else:
-                time.sleep(0.15)
+            for phost, ppath in PROBE_ENDPOINTS:
+                t0 = time.time()
+                try:
+                    data = socks5_http(port, phost, ppath, TIMEOUT)
+                except Exception:
+                    data = None
+                if data and re.match(rb"HTTP/1\.[01] (200|204|301|302)", data):
+                    dt = time.time() - t0
+                    best = dt if best is None else min(best, dt)
+                    ok_count += 1
+                    if ok_count >= 2:
+                        break
+            if ok_count >= 2:
+                break
+            time.sleep(0.15)
         if best is not None:
             exit_ip = get_exit_ip(port, TIMEOUT)
         return best, exit_ip
