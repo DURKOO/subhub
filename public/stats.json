@@ -1,59 +1,58 @@
 {
- "updated": "2026-11-02 09:31:57 UTC",
- "scraped": 7792,
- "parsed": 5383,
+ "updated": "2026-11-02 09:49:04 UTC",
+ "scraped": 5089,
+ "parsed": 1825,
  "protocols": {
-  "shadowsocks": 1921,
-  "trojan": 802,
-  "vmess": 1542,
-  "shadowsocksr": 60,
-  "vless": 845,
-  "hysteria2": 213
+  "vmess": 1105,
+  "shadowsocks": 283,
+  "trojan": 398,
+  "vless": 38,
+  "hysteria2": 1
  },
- "alive": 54,
+ "alive": 8,
  "unprobed_skipped": 0,
  "exit_ip_fallback_dns": 0,
  "unique_ip": true,
- "ip_duplicates_removed": 159,
+ "ip_duplicates_removed": 16,
  "latency_max": 1.5,
- "latency_dropped": 337,
- "subnet_duplicates_removed": 38,
+ "latency_dropped": 20,
+ "subnet_duplicates_removed": 22,
  "max_per_subnet": 2,
- "published": 54,
- "avg_latency": 0.935,
+ "published": 8,
+ "avg_latency": 1.362,
  "best": [
-  {
-   "name": "🇬🇧GB-82.38.31.162-0174",
-   "host": "82.38.31.162",
-   "port": 443,
-   "exit_ip": "193.29.139.221",
-   "ip_src": "echo",
-   "latency": 1.377,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 19
-  },
   {
    "name": "🇬🇧GB-82.38.31.159-0170",
    "host": "82.38.31.159",
    "port": 443,
    "exit_ip": "193.29.139.166",
    "ip_src": "echo",
-   "latency": 1.388,
+   "latency": 1.349,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 19
+   "history_ok": 20
   },
   {
-   "name": "🇫🇷FR-54.36.174.140-0194",
-   "host": "54.36.174.140",
+   "name": "🇬🇧GB-82.38.31.162-0174",
+   "host": "82.38.31.162",
+   "port": 443,
+   "exit_ip": "193.29.139.221",
+   "ip_src": "echo",
+   "latency": 1.374,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 20
+  },
+  {
+   "name": "🇫🇷FR-54.36.174.140-0189",
+   "host": "pl140.vpnbook.com",
    "port": 443,
    "exit_ip": "54.36.174.140",
    "ip_src": "echo",
-   "latency": 1.436,
+   "latency": 1.396,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 19
+   "history_ok": 20
   },
   {
    "name": "🇫🇷FR-54.36.174.134-0238",
@@ -61,10 +60,10 @@
    "port": 443,
    "exit_ip": "54.36.174.134",
    "ip_src": "echo",
-   "latency": 1.436,
+   "latency": 1.402,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 19
+   "history_ok": 20
   },
   {
    "name": "🇺🇸US-198.98.53.130-0239",
@@ -72,65 +71,43 @@
    "port": 443,
    "exit_ip": "198.98.53.130",
    "ip_src": "echo",
-   "latency": 1.406,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 18
-  },
-  {
-   "name": "🇨🇦CA-51.222.136.236-0190",
-   "host": "51.222.136.236",
-   "port": 8882,
-   "exit_ip": "51.222.136.236",
-   "ip_src": "echo",
-   "latency": 1.175,
+   "latency": 1.342,
    "proto": "shadowsocks",
    "engine": "xray",
    "history_ok": 19
   },
   {
-   "name": "hysteria2-1929113992",
-   "host": "66.94.121.46",
+   "name": "🇯🇵JP-84.247.155.196-0232",
+   "host": "84.247.155.196",
    "port": 443,
-   "exit_ip": "66.94.121.46",
+   "exit_ip": "84.247.155.196",
    "ip_src": "echo",
-   "latency": 0.203,
-   "proto": "hysteria2",
-   "engine": "singbox",
-   "history_ok": 4
+   "latency": 1.48,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 19
   },
   {
-   "name": "🎃96@oneclickvpnkeys",
-   "host": "3.76.221.4",
+   "name": "伊朗+V2CROSS.COM",
+   "host": "217.60.73.56",
    "port": 443,
-   "exit_ip": "3.76.221.4",
+   "exit_ip": "217.60.72.225",
    "ip_src": "echo",
-   "latency": 0.879,
+   "latency": 1.411,
    "proto": "hysteria2",
    "engine": "singbox",
    "history_ok": 8
   },
   {
-   "name": "hysteria2-1853488260",
-   "host": "13.36.234.11",
+   "name": "vless-1854038780",
+   "host": "185.95.231.156",
    "port": 443,
-   "exit_ip": "13.36.234.11",
+   "exit_ip": "185.95.231.156",
    "ip_src": "echo",
-   "latency": 0.486,
-   "proto": "hysteria2",
-   "engine": "singbox",
-   "history_ok": 4
-  },
-  {
-   "name": "🎃71@oneclickvpnkeys",
-   "host": "18.193.79.104",
-   "port": 443,
-   "exit_ip": "18.193.79.104",
-   "ip_src": "echo",
-   "latency": 0.975,
-   "proto": "hysteria2",
-   "engine": "singbox",
-   "history_ok": 8
+   "latency": 1.144,
+   "proto": "vless",
+   "engine": "xray",
+   "history_ok": 5
   }
  ]
 }
