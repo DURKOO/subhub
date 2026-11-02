@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02 03:43:17 UTC",
+ "updated": "2026-11-02 03:57:24 UTC",
  "scraped": 7186,
  "parsed": 5468,
  "protocols": {
@@ -14,13 +14,13 @@
  "unprobed_skipped": 0,
  "exit_ip_fallback_dns": 0,
  "unique_ip": true,
- "ip_duplicates_removed": 34,
+ "ip_duplicates_removed": 36,
  "latency_max": 1.5,
- "latency_dropped": 85,
- "subnet_duplicates_removed": 32,
+ "latency_dropped": 84,
+ "subnet_duplicates_removed": 33,
  "max_per_subnet": 2,
  "published": 34,
- "avg_latency": 1.186,
+ "avg_latency": 1.218,
  "best": [
   {
    "name": "🏁RELAY-104.21.7.133-1364",
@@ -28,10 +28,21 @@
    "port": 80,
    "exit_ip": "64.181.219.110",
    "ip_src": "echo",
-   "latency": 1.202,
+   "latency": 1.113,
    "proto": "vmess",
    "engine": "xray",
-   "history_ok": 14
+   "history_ok": 15
+  },
+  {
+   "name": "🏁RELAY-104.21.57.84-1372",
+   "host": "104.21.57.84",
+   "port": 8443,
+   "exit_ip": "207.244.230.92",
+   "ip_src": "echo",
+   "latency": 1.307,
+   "proto": "vmess",
+   "engine": "xray",
+   "history_ok": 15
   },
   {
    "name": "未知34 14.7MB/s",
@@ -39,54 +50,32 @@
    "port": 443,
    "exit_ip": "148.113.219.184",
    "ip_src": "echo",
-   "latency": 1.371,
+   "latency": 1.243,
    "proto": "vmess",
    "engine": "xray",
-   "history_ok": 7
+   "history_ok": 8
   },
   {
-   "name": "🇨🇳CN-47.88.79.34-1356",
-   "host": "47.88.79.34",
+   "name": "🇬🇧GB-82.38.31.162-0156",
+   "host": "82.38.31.162",
    "port": 443,
-   "exit_ip": "47.88.79.34",
+   "exit_ip": "193.29.139.221",
    "ip_src": "echo",
-   "latency": 1.088,
-   "proto": "vmess",
-   "engine": "xray",
-   "history_ok": 13
-  },
-  {
-   "name": "🇬🇧GB-82.38.31.174-0176",
-   "host": "82.38.31.174",
-   "port": 443,
-   "exit_ip": "193.29.139.135",
-   "ip_src": "echo",
-   "latency": 1.292,
+   "latency": 1.251,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 14
+   "history_ok": 15
   },
   {
-   "name": "🇺🇸US-198.98.53.130-6102",
-   "host": "198.98.53.130",
+   "name": "🇬🇧GB-82.38.31.159-0154",
+   "host": "82.38.31.159",
    "port": 443,
-   "exit_ip": "198.98.53.130",
+   "exit_ip": "193.29.139.166",
    "ip_src": "echo",
-   "latency": 1.122,
+   "latency": 1.261,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 13
-  },
-  {
-   "name": "🇬🇧GB-82.38.31.170-0186",
-   "host": "82.38.31.170",
-   "port": 443,
-   "exit_ip": "193.29.139.172",
-   "ip_src": "echo",
-   "latency": 1.302,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 14
+   "history_ok": 15
   },
   {
    "name": "🇫🇷FR-54.36.174.134-0208",
@@ -94,10 +83,10 @@
    "port": 443,
    "exit_ip": "54.36.174.134",
    "ip_src": "echo",
-   "latency": 1.366,
+   "latency": 1.315,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 14
+   "history_ok": 15
   },
   {
    "name": "🇫🇷FR-54.36.174.140-0183",
@@ -105,32 +94,43 @@
    "port": 443,
    "exit_ip": "54.36.174.140",
    "ip_src": "echo",
-   "latency": 1.366,
+   "latency": 1.326,
    "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 15
+  },
+  {
+   "name": "🇨🇳CN-47.88.79.34-1356",
+   "host": "47.88.79.34",
+   "port": 443,
+   "exit_ip": "47.88.79.34",
+   "ip_src": "echo",
+   "latency": 1.161,
+   "proto": "vmess",
    "engine": "xray",
    "history_ok": 14
   },
   {
-   "name": "🇯🇵JP-84.247.155.196-0198",
-   "host": "84.247.155.196",
+   "name": "🇿🇦ZA-102.37.156.224-0172",
+   "host": "102.37.156.224",
    "port": 443,
-   "exit_ip": "84.247.155.196",
+   "exit_ip": "102.37.156.224",
    "ip_src": "echo",
-   "latency": 1.236,
+   "latency": 1.481,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 13
+   "history_ok": 15
   },
   {
-   "name": "🇺🇸US-216.105.168.18-6101",
-   "host": "216.105.168.18",
+   "name": "🇺🇸US-198.98.53.130-6102",
+   "host": "198.98.53.130",
    "port": 443,
-   "exit_ip": "216.105.168.18",
+   "exit_ip": "198.98.53.130",
    "ip_src": "echo",
-   "latency": 1.022,
+   "latency": 1.345,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 11
+   "history_ok": 14
   }
  ]
 }
