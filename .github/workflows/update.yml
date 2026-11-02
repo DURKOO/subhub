@@ -49,8 +49,8 @@ jobs:
           PROBE_TIMEOUT: "3"
           KEEP: "1000"
           MAX_NODES: "12000"
-          MAX_PER_SUBNET: "999"
-          LATENCY_MAX: "0"
+          MAX_PER_SUBNET: "2"
+          LATENCY_MAX: "1.5"
           UNIQUE_IP: "1"
           INCLUDE_UNPROBED: "0"
         run: python3 subhub.py
