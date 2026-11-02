@@ -1,22 +1,16 @@
 # SubHub 订阅源列表
 # 每行一个 URL；支持 base64 订阅 / 明文链接列表 / clash yaml
-# 以 # 开头为注释。源失效直接删掉换新的。
 
-https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/All_Configs_Sub.txt
-https://raw.githubusercontent.com/vpei/Free-Node-Merge/main/sub/merge.txt
-https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt
-https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt
-https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2
-https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub
-https://raw.githubusercontent.com/freefq/free/master/v2
+# ===== 高频高质量 TG 转存源（每天多次更新，质量更接近私有机场）=====
+https://raw.githubusercontent.com/Alvin9999/pac2/master/v2ray/config.yaml
 https://raw.githubusercontent.com/mfuu/v2ray/master/v2ray
-https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub
-https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_Sub.txt
+https://raw.githubusercontent.com/vveg26/get_proxy/main/dist/v2ray.config.txt
+https://raw.githubusercontent.com/mianfeifq/share/main/data2024057.txt
 https://raw.githubusercontent.com/ts-sf/fly/main/v2
-https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.txt
-https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_RAW.txt
-https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml
-https://raw.githubusercontent.com/freefq/free/master/v2
 
-# Au1rxx 高质量聚合源（Reality + Apple SNI，每小时刷新）
-https://github.com/Au1rxx/free-vpn-subscriptions/raw/main/output/v2ray-base64.txt
+# ===== 传统高产聚合源（作为基础池）=====
+https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt
+https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/All_Configs_Sub.txt
+https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt
+https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub
+https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub
