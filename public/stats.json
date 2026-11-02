@@ -1,48 +1,37 @@
 {
- "updated": "2026-11-02 02:17:23 UTC",
+ "updated": "2026-11-02 03:17:24 UTC",
  "scraped": 7186,
- "parsed": 5472,
+ "parsed": 5464,
  "protocols": {
   "shadowsocks": 1876,
-  "trojan": 962,
+  "trojan": 965,
   "vmess": 2132,
   "shadowsocksr": 60,
-  "hysteria2": 46,
-  "vless": 396
+  "vless": 386,
+  "hysteria2": 45
  },
- "alive": 213,
+ "alive": 38,
  "unprobed_skipped": 0,
- "exit_ip_fallback_dns": 5,
+ "exit_ip_fallback_dns": 0,
  "unique_ip": true,
- "ip_duplicates_removed": 60,
- "latency_max": 0.0,
- "latency_dropped": 0,
- "subnet_duplicates_removed": 0,
- "max_per_subnet": 999,
- "published": 213,
- "avg_latency": 2.119,
+ "ip_duplicates_removed": 35,
+ "latency_max": 1.5,
+ "latency_dropped": 88,
+ "subnet_duplicates_removed": 33,
+ "max_per_subnet": 2,
+ "published": 38,
+ "avg_latency": 1.242,
  "best": [
   {
-   "name": "🏁RELAY-172.67.187.145-1366",
-   "host": "172.67.187.145",
+   "name": "🏁RELAY-104.21.7.133-1364",
+   "host": "104.21.7.133",
    "port": 80,
    "exit_ip": "64.181.219.110",
    "ip_src": "echo",
-   "latency": 1.103,
+   "latency": 1.185,
    "proto": "vmess",
    "engine": "xray",
-   "history_ok": 12
-  },
-  {
-   "name": "🏁RELAY-172.67.167.78-1373",
-   "host": "172.67.167.78",
-   "port": 8443,
-   "exit_ip": "207.244.230.92",
-   "ip_src": "echo",
-   "latency": 1.699,
-   "proto": "vmess",
-   "engine": "xray",
-   "history_ok": 12
+   "history_ok": 13
   },
   {
    "name": "未知34 14.7MB/s",
@@ -50,54 +39,10 @@
    "port": 443,
    "exit_ip": "148.113.219.184",
    "ip_src": "echo",
-   "latency": 1.116,
+   "latency": 1.408,
    "proto": "vmess",
    "engine": "xray",
-   "history_ok": 5
-  },
-  {
-   "name": "🇩🇪[openproxylist.com] vmess-DE",
-   "host": "172.67.156.121",
-   "port": 443,
-   "exit_ip": "57.129.83.11",
-   "ip_src": "echo",
-   "latency": 1.473,
-   "proto": "vmess",
-   "engine": "xray",
-   "history_ok": 2
-  },
-  {
-   "name": "未知113",
-   "host": "188.114.97.1",
-   "port": 443,
-   "exit_ip": "79.137.99.194",
-   "ip_src": "echo",
-   "latency": 1.502,
-   "proto": "vmess",
-   "engine": "xray",
-   "history_ok": 2
-  },
-  {
-   "name": "🇺🇸US-198.98.53.130-6102",
-   "host": "198.98.53.130",
-   "port": 443,
-   "exit_ip": "198.98.53.130",
-   "ip_src": "echo",
-   "latency": 1.023,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 11
-  },
-  {
-   "name": "🇬🇧GB-82.38.31.159-0154",
-   "host": "82.38.31.159",
-   "port": 443,
-   "exit_ip": "193.29.139.166",
-   "ip_src": "echo",
-   "latency": 1.204,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 12
+   "history_ok": 6
   },
   {
    "name": "🇬🇧GB-82.38.31.170-0186",
@@ -105,32 +50,87 @@
    "port": 443,
    "exit_ip": "193.29.139.172",
    "ip_src": "echo",
-   "latency": 1.204,
+   "latency": 1.304,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 13
+  },
+  {
+   "name": "🇬🇧GB-82.38.31.159-0154",
+   "host": "82.38.31.159",
+   "port": 443,
+   "exit_ip": "193.29.139.166",
+   "ip_src": "echo",
+   "latency": 1.306,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 13
+  },
+  {
+   "name": "🇫🇷FR-54.36.174.140-0183",
+   "host": "54.36.174.140",
+   "port": 443,
+   "exit_ip": "54.36.174.140",
+   "ip_src": "echo",
+   "latency": 1.334,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 13
+  },
+  {
+   "name": "🇫🇷FR-54.36.174.134-0208",
+   "host": "54.36.174.134",
+   "port": 443,
+   "exit_ip": "54.36.174.134",
+   "ip_src": "echo",
+   "latency": 1.368,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 13
+  },
+  {
+   "name": "🇨🇳CN-47.88.79.34-1356",
+   "host": "47.88.79.34",
+   "port": 443,
+   "exit_ip": "47.88.79.34",
+   "ip_src": "echo",
+   "latency": 1.234,
+   "proto": "vmess",
+   "engine": "xray",
+   "history_ok": 12
+  },
+  {
+   "name": "🇺🇸US-216.105.168.18-6101",
+   "host": "216.105.168.18",
+   "port": 443,
+   "exit_ip": "216.105.168.18",
+   "ip_src": "echo",
+   "latency": 1.065,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 10
+  },
+  {
+   "name": "🇺🇸US-198.98.53.130-6102",
+   "host": "198.98.53.130",
+   "port": 443,
+   "exit_ip": "198.98.53.130",
+   "ip_src": "echo",
+   "latency": 1.436,
    "proto": "shadowsocks",
    "engine": "xray",
    "history_ok": 12
   },
   {
-   "name": "🇬🇧GB-82.38.31.162-0156",
-   "host": "82.38.31.162",
+   "name": "🎃96@oneclickvpnkeys",
+   "host": "3.76.221.4",
    "port": 443,
-   "exit_ip": "193.29.139.221",
+   "exit_ip": "3.76.221.4",
    "ip_src": "echo",
-   "latency": 1.205,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 12
-  },
-  {
-   "name": "🇬🇧GB-82.38.31.174-0176",
-   "host": "82.38.31.174",
-   "port": 443,
-   "exit_ip": "193.29.139.135",
-   "ip_src": "echo",
-   "latency": 1.211,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 12
+   "latency": 0.466,
+   "proto": "hysteria2",
+   "engine": "singbox",
+   "history_ok": 2
   }
  ]
 }
