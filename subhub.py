@@ -710,6 +710,23 @@ def probe(node):
         exit_ip = get_exit_ip(port, TIMEOUT)
         if not exit_ip:
             return None, None
+
+        # 查 IP 详情，过滤机房 IP
+        try:
+            import urllib.request, json
+            req = urllib.request.Request(f"http://ip-api.com/json/{exit_ip}?fields=isp,org,as", headers={"User-Agent": "curl/7.68.0"})
+            with urllib.request.urlopen(req, timeout=5) as r:
+                info = json.loads(r.read().decode())
+            asn_str = (info.get("isp", "") + " " + info.get("org", "") + " " + info.get("as", "")).lower()
+            bad_kw = ["amazon", "google", "microsoft", "digitalocean", "vultr", "linode", "ovh", "alibaba", "tencent", "leaseweb", "hetzner", "contabo", "oracle", "cloudflare", "akamai"]
+            for kw in bad_kw:
+                if kw in asn_str:
+                    return None, None
+        except Exception:
+            pass
+
+        if not exit_ip:
+            return None, None
         dt = time.time() - t0
         return dt, exit_ip
     except Exception:
