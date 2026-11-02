@@ -46,7 +46,7 @@ jobs:
       - name: 抓取 + 测速 + 生成订阅
         env:
           WORKERS: "48"
-          PROBE_TIMEOUT: "3"
+          PROBE_TIMEOUT: "2"
           KEEP: "1000"
           MAX_NODES: "12000"
           MAX_PER_SUBNET: "2"
