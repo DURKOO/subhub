@@ -55,12 +55,7 @@ INCLUDE_UNPROBED = os.environ.get("INCLUDE_UNPROBED", "0") in ("1", "true", "Tru
 MAX_NODES = int(os.environ.get("MAX_NODES", "800"))
 OK_DECAY = float(os.environ.get("OK_DECAY", "0.95"))
 
-PROBE_ENDPOINTS = [
-    ("www.gstatic.com", "/generate_204"),
-    ("connectivitycheck.gstatic.com", "/generate_204"),
-    ("www.google.com", "/generate_204"),
-    ("cp.cloudflare.com", "/generate_204"),
-]
+PROBE_ENDPOINTS = []
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 
 XRAY_AVAILABLE = bool(shutil.which(XRAY_BIN) or Path(XRAY_BIN).exists())
@@ -703,23 +698,13 @@ def probe(node):
         if not started:
             return None, None
 
-        # 快速探测：单轮、任一端点返回 200/204/301/302 即判活，且必须拿到真实出口 IP
-        for phost, ppath in PROBE_ENDPOINTS:
-            t0 = time.time()
-            try:
-                data = socks5_http(port, phost, ppath, TIMEOUT)
-            except Exception:
-                data = None
-            if data and re.match(rb"HTTP/1\.[01] (200|204|301|302)", data):
-                dt = time.time() - t0
-                best = dt if best is None else min(best, dt)
-                break
-        if best is None:
-            return None, None
+        # 严格出口验证：必须拿到真实出口 IP，拿不到直接判死
+        t0 = time.time()
         exit_ip = get_exit_ip(port, TIMEOUT)
         if not exit_ip:
             return None, None
-        return best, exit_ip
+        dt = time.time() - t0
+        return dt, exit_ip
     except Exception:
         return None, None
     finally:
