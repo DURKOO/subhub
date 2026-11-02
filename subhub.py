@@ -540,6 +540,11 @@ def parse_uri(uri):
 def collect():
     src = CONF / "sources.txt"
     urls = []
+    # 支持通过环境变量注入高优源（保护 token 不泄露）
+    extra_url = os.environ.get("EXTRA_SUB_URL", "").strip()
+    if extra_url:
+        urls.append(extra_url)
+        print("[+] 已注入环境变量源: %s" % extra_url[:50])
     if src.exists():
         for line in src.read_text(encoding="utf-8").splitlines():
             line = line.strip()
@@ -559,7 +564,6 @@ def collect():
             print("[+] %-70s %5d 行" % (url[:70], n))
         except Exception as e:
             print("[!] %-70s %s" % (url[:70], e))
-    # 读取本地附加节点池（config/extra_nodes.txt）
     extra = CONF / "extra_nodes.txt"
     if extra.exists():
         n = 0
