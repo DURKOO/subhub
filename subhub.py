@@ -698,7 +698,14 @@ def probe(node):
         if not started:
             return None, None
 
-        # 严格出口验证：必须拿到真实出口 IP，拿不到直接判死
+        # 真实网页访问验证：请求百度，确认能正常打开网页
+        try:
+            data = socks5_http(port, "www.baidu.com", "/", TIMEOUT, 80)
+            if not data or not re.match(rb"HTTP/1\.[01] (200|301|302)", data):
+                return None, None
+        except Exception:
+            return None, None
+
         t0 = time.time()
         exit_ip = get_exit_ip(port, TIMEOUT)
         if not exit_ip:
