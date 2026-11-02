@@ -22,27 +22,31 @@ jobs:
         run: |
           set -e
           VER=$(curl -sSL https://api.github.com/repos/XTLS/Xray-core/releases/latest | grep -oP '"tag_name":\s*"\K[^"]+')
+          echo "Xray version: $VER"
           curl -sSL "https://github.com/XTLS/Xray-core/releases/download/${VER}/Xray-linux-64.zip" -o xray.zip
           unzip -o xray.zip xray > /dev/null
           chmod +x xray
           sudo mv xray /usr/local/bin/xray
+          xray version | head -1
 
-      - name: 安装 sing-box
+      - name: 安装 sing-box（hysteria2 / tuic 测活用）
         run: |
           set -e
           VER=$(curl -sSL https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep -oP '"tag_name":\s*"v\K[^"]+')
+          echo "sing-box version: $VER"
           curl -sSL "https://github.com/SagerNet/sing-box/releases/download/v${VER}/sing-box-${VER}-linux-amd64.tar.gz" -o sb.tar.gz
           tar xzf sb.tar.gz
           sudo mv "sing-box-${VER}-linux-amd64/sing-box" /usr/local/bin/sing-box
           chmod +x /usr/local/bin/sing-box
+          sing-box version | head -3 || true
 
       - name: 语法校验
-        run: python3 -m py_compile subhub.py
+        run: python3 -m py_compile subhub.py && echo "syntax ok"
 
       - name: 抓取 + 测速 + 生成订阅
         env:
-          WORKERS: "24"
-          PROBE_TIMEOUT: "5"
+          WORKERS: "48"
+          PROBE_TIMEOUT: "3"
           KEEP: "1000"
           MAX_NODES: "12000"
           MAX_PER_SUBNET: "999"
