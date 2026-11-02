@@ -524,19 +524,6 @@ def parse_uri(uri):
             # 过滤 Cloudflare 中转/回源 IP 段（本地测活会被 403/EOF 打挂）
             if host.startswith(("104.16.", "104.17.", "104.18.", "104.19.", "104.20.", "104.21.", "104.22.", "104.23.", "104.24.", "104.25.", "104.26.", "104.27.", "104.28.", "104.29.", "104.30.", "104.31.", "172.64.", "172.65.", "172.66.", "172.67.", "172.68.", "172.69.", "172.70.", "172.71.", "162.159.", "188.114.")):
                 return None
-            # 端口强约束：只保留标准 Web 端口，剔除高端口临时节点
-            # 端口过滤：只剔除极度冷门的 1-1023 之外的非常见高端口，放过 20000-65535 临时端口
-            # 国内被 QoS 的高危端口黑名单（vpnbook/nebulacloud 等免费节点常用）
-            if port in (19999, 20000, 35043, 8018, 64546, 57353, 43385, 15501, 13209):
-                return None
-            # 国内可用端口白名单：仅保留标准 Web/CF 端口，彻底屏蔽 QoS 高危端口
-            ALLOWED_PORTS = {443, 80, 8443, 2053, 2083, 2087, 2096}
-            if port not in ALLOWED_PORTS:
-                return None
-                return None
-            # 只拦截 1-1023 非标准端口，其余全部放行
-            if 1024 <= port <= 65535:
-                pass
             proto = out.get("protocol") or out.get("type") or ""
             # 用完整出站对象的规范化哈希做去重键：同 host:port 但不同 uuid / 密码 /
             # sni / reality pbk / grpc serviceName 的是不同节点，不能被互相覆盖丢掉
@@ -943,6 +930,15 @@ def main():
         results = subnet_uniq
         print("   网段去重(/24 上限 %d): 移除 %d 个，剩 %d"
               % (MAX_PER_SUBNET, subnet_removed, len(results)))
+
+    # 端口白名单过滤：只保留标准 Web/CF 端口，剔除 QoS 高危端口
+    ALLOWED_PORTS = {443, 80, 8443, 2053, 2083, 2087, 2096}
+    before_port = len(results)
+    results = [n for n in results if int(n.get("port") or 0) in ALLOWED_PORTS]
+    print("   端口白名单过滤: 移除 %d 个非标端口节点，剩 %d" % (before_port - len(results), len(results)))
+    if not results:
+        print("[x] 端口白名单过滤后无可用节点")
+        return 1
 
     keep = results[:max(1, KEEP)]   # 防止 KEEP<=0 导致空订阅 / 后续除零
 
