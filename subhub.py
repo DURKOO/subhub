@@ -707,7 +707,7 @@ def probe(node):
 
         # 真实网页访问验证：请求百度，确认能正常打开网页
         try:
-            data = socks5_http(port, "www.baidu.com", "/", TIMEOUT, 80)
+            data = socks5_http(port, "www.gstatic.com", "/generate_204", TIMEOUT, 80)
             if not data or not re.match(rb"HTTP/1\.[01] (200|301|302)", data):
                 return None, None
         except Exception:
