@@ -526,6 +526,9 @@ def parse_uri(uri):
                 return None
             # 端口强约束：只保留标准 Web 端口，剔除高端口临时节点
             # 端口过滤：只剔除极度冷门的 1-1023 之外的非常见高端口，放过 20000-65535 临时端口
+            # 国内被 QoS 的高危端口黑名单（vpnbook/nebulacloud 等免费节点常用）
+            if port in (19999, 20000, 35043, 8018, 64546, 57353, 43385, 15501, 13209):
+                return None
             if port < 1024 and port not in (443, 80):
                 return None
             # 只拦截 1-1023 非标准端口，其余全部放行
