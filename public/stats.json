@@ -1,26 +1,26 @@
 {
- "updated": "2026-11-01 22:30:50 UTC",
- "scraped": 7139,
- "parsed": 5410,
+ "updated": "2026-11-02 02:17:23 UTC",
+ "scraped": 7186,
+ "parsed": 5472,
  "protocols": {
   "shadowsocks": 1876,
-  "trojan": 929,
-  "vmess": 2133,
+  "trojan": 962,
+  "vmess": 2132,
   "shadowsocksr": 60,
-  "vless": 380,
-  "hysteria2": 32
+  "hysteria2": 46,
+  "vless": 396
  },
- "alive": 219,
+ "alive": 213,
  "unprobed_skipped": 0,
- "exit_ip_fallback_dns": 7,
+ "exit_ip_fallback_dns": 5,
  "unique_ip": true,
- "ip_duplicates_removed": 59,
+ "ip_duplicates_removed": 60,
  "latency_max": 0.0,
  "latency_dropped": 0,
  "subnet_duplicates_removed": 0,
  "max_per_subnet": 999,
- "published": 219,
- "avg_latency": 2.181,
+ "published": 213,
+ "avg_latency": 2.119,
  "best": [
   {
    "name": "🏁RELAY-172.67.187.145-1366",
@@ -28,10 +28,10 @@
    "port": 80,
    "exit_ip": "64.181.219.110",
    "ip_src": "echo",
-   "latency": 1.102,
+   "latency": 1.103,
    "proto": "vmess",
    "engine": "xray",
-   "history_ok": 11
+   "history_ok": 12
   },
   {
    "name": "🏁RELAY-172.67.167.78-1373",
@@ -39,10 +39,10 @@
    "port": 8443,
    "exit_ip": "207.244.230.92",
    "ip_src": "echo",
-   "latency": 1.627,
+   "latency": 1.699,
    "proto": "vmess",
    "engine": "xray",
-   "history_ok": 11
+   "history_ok": 12
   },
   {
    "name": "未知34 14.7MB/s",
@@ -50,10 +50,21 @@
    "port": 443,
    "exit_ip": "148.113.219.184",
    "ip_src": "echo",
-   "latency": 1.12,
+   "latency": 1.116,
    "proto": "vmess",
    "engine": "xray",
-   "history_ok": 4
+   "history_ok": 5
+  },
+  {
+   "name": "🇩🇪[openproxylist.com] vmess-DE",
+   "host": "172.67.156.121",
+   "port": 443,
+   "exit_ip": "57.129.83.11",
+   "ip_src": "echo",
+   "latency": 1.473,
+   "proto": "vmess",
+   "engine": "xray",
+   "history_ok": 2
   },
   {
    "name": "未知113",
@@ -61,21 +72,21 @@
    "port": 443,
    "exit_ip": "79.137.99.194",
    "ip_src": "echo",
-   "latency": 1.48,
+   "latency": 1.502,
    "proto": "vmess",
    "engine": "xray",
-   "history_ok": 1
+   "history_ok": 2
   },
   {
-   "name": "@vpnbaz🍂 #1",
-   "host": "130.49.161.70",
+   "name": "🇺🇸US-198.98.53.130-6102",
+   "host": "198.98.53.130",
    "port": 443,
-   "exit_ip": "130.49.161.70",
+   "exit_ip": "198.98.53.130",
    "ip_src": "echo",
-   "latency": 0.137,
-   "proto": "hysteria2",
-   "engine": "singbox",
-   "history_ok": 3
+   "latency": 1.023,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 11
   },
   {
    "name": "🇬🇧GB-82.38.31.159-0154",
@@ -83,43 +94,10 @@
    "port": 443,
    "exit_ip": "193.29.139.166",
    "ip_src": "echo",
-   "latency": 1.198,
+   "latency": 1.204,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 11
-  },
-  {
-   "name": "🇬🇧GB-82.38.31.162-0156",
-   "host": "82.38.31.162",
-   "port": 443,
-   "exit_ip": "193.29.139.221",
-   "ip_src": "echo",
-   "latency": 1.199,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 11
-  },
-  {
-   "name": "🇬🇧GB-82.38.31.174-0176",
-   "host": "82.38.31.174",
-   "port": 443,
-   "exit_ip": "193.29.139.135",
-   "ip_src": "echo",
-   "latency": 1.202,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 11
-  },
-  {
-   "name": "🇫🇷FR-54.36.174.134-0208",
-   "host": "54.36.174.134",
-   "port": 443,
-   "exit_ip": "54.36.174.134",
-   "ip_src": "echo",
-   "latency": 1.211,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 11
+   "history_ok": 12
   },
   {
    "name": "🇬🇧GB-82.38.31.170-0186",
@@ -127,10 +105,32 @@
    "port": 443,
    "exit_ip": "193.29.139.172",
    "ip_src": "echo",
-   "latency": 1.212,
+   "latency": 1.204,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 11
+   "history_ok": 12
+  },
+  {
+   "name": "🇬🇧GB-82.38.31.162-0156",
+   "host": "82.38.31.162",
+   "port": 443,
+   "exit_ip": "193.29.139.221",
+   "ip_src": "echo",
+   "latency": 1.205,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 12
+  },
+  {
+   "name": "🇬🇧GB-82.38.31.174-0176",
+   "host": "82.38.31.174",
+   "port": 443,
+   "exit_ip": "193.29.139.135",
+   "ip_src": "echo",
+   "latency": 1.211,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 12
   }
  ]
 }
