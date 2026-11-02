@@ -950,10 +950,10 @@ def main():
     (OUT / "sub_base64.txt").write_text(b64 + "\n", encoding="utf-8")
     (OUT / "sub_strict.b64").write_text(b64 + "\n", encoding="utf-8")
     (OUT / "sub_raw.txt").write_text(body, encoding="utf-8")
-    # 候选池：所有通过基础过滤的节点（未做严格测活），供本地从国内网络二次筛选
-    cand_body = "\n".join(n["uri"] for n in results) + "\n"
+    # 候选池：全部解析成功的节点（不做海外测活），供本地从国内网络二次筛选
+    cand_body = "\n".join(n["uri"] for n in nodes.values()) + "\n"
     (OUT / "sub_candidates.txt").write_text(cand_body, encoding="utf-8")
-    print("   候选池 sub_candidates.txt: %d 个节点" % len(results))
+    print("   候选池 sub_candidates.txt: %d 个节点" % len(nodes))
     save_json(OUT / "stats.json", {
         "updated": time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime()),
         "scraped": len(raw_lines),
