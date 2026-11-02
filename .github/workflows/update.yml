@@ -21,7 +21,7 @@ jobs:
       - name: 安装 Xray
         run: |
           set -e
-          VER=$(curl -sSL https://api.github.com/repos/XTLS/Xray-core/releases/latest | grep -oP '"tag_name":\s*"\K[^"]+')
+          VER=$(curl -sSL -H "User-Agent: Mozilla/5.0" https://api.github.com/repos/XTLS/Xray-core/releases/latest | grep -oP '"tag_name":\s*"\K[^"]+')
           echo "Xray version: $VER"
           curl -sSL "https://github.com/XTLS/Xray-core/releases/download/${VER}/Xray-linux-64.zip" -o xray.zip
           unzip -o xray.zip xray > /dev/null
@@ -32,7 +32,7 @@ jobs:
       - name: 安装 sing-box（hysteria2 / tuic 测活用）
         run: |
           set -e
-          VER=$(curl -sSL https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep -oP '"tag_name":\s*"v\K[^"]+')
+          VER=$(curl -sSL -H "User-Agent: Mozilla/5.0" https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep -oP '"tag_name":\s*"v\K[^"]+')
           echo "sing-box version: $VER"
           curl -sSL "https://github.com/SagerNet/sing-box/releases/download/v${VER}/sing-box-${VER}-linux-amd64.tar.gz" -o sb.tar.gz
           tar xzf sb.tar.gz
