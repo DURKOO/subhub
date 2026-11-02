@@ -522,6 +522,8 @@ def parse_uri(uri):
             if not r or not r[0] or not r[1]:
                 return None
             host, port, out, name, engine = r
+            if not host or host in ("0.0.0.0", "127.0.0.1", "localhost", "::", "::1"):
+                return None
             proto = out.get("protocol") or out.get("type") or ""
             # 用完整出站对象的规范化哈希做去重键：同 host:port 但不同 uuid / 密码 /
             # sni / reality pbk / grpc serviceName 的是不同节点，不能被互相覆盖丢掉
