@@ -524,6 +524,9 @@ def parse_uri(uri):
             host, port, out, name, engine = r
             if not host or host in ("0.0.0.0", "127.0.0.1", "localhost", "::", "::1"):
                 return None
+            # 过滤 Cloudflare 中转/回源 IP 段（本地测活会被 403/EOF 打挂）
+            if host.startswith(("104.16.", "104.17.", "104.18.", "104.19.", "104.20.", "104.21.", "104.22.", "104.23.", "104.24.", "104.25.", "104.26.", "104.27.", "172.64.", "172.65.", "172.66.", "172.67.", "172.68.", "172.69.", "172.70.", "172.71.", "162.159.", "188.114.")):
+                return None
             proto = out.get("protocol") or out.get("type") or ""
             # 用完整出站对象的规范化哈希做去重键：同 host:port 但不同 uuid / 密码 /
             # sni / reality pbk / grpc serviceName 的是不同节点，不能被互相覆盖丢掉
