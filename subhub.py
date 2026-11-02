@@ -72,6 +72,8 @@ IP_ECHO_SOURCES = (
     ("ip.3322.net", 80, "/", "text"),
 )
 
+_ASN_CACHE = {}
+
 # ------------------------------------------------- 基础工具
 
 def b64d(s):
@@ -671,7 +673,7 @@ def get_exit_ip(port, timeout):
             data = socks5_http(port, host, path, timeout, dport)
         except Exception:
             continue
-        if not data or not re.match(rb"HTTP/1\.[01] (200|301|302)", data):
+        if not data or not re.match(rb"HTTP/1\.[01] (200|204|301|302)", data):
             continue
         body = data.split(b"\r\n\r\n", 1)[-1]
         m = IPV4_RE.search(body)
@@ -680,8 +682,6 @@ def get_exit_ip(port, timeout):
             if is_routable_ip(ip):
                 return ip
     return None
-
-
 # ------------------------------------------------- 测活
 
 def probe(node):
@@ -705,26 +705,33 @@ def probe(node):
         if not started:
             return None, None
 
+        # 真实网页访问验证：请求百度，确认能正常打开网页
+        try:
+            data = socks5_http(port, "www.gstatic.com", "/generate_204", TIMEOUT, 80)
+            if not data or not re.match(rb"HTTP/1\.[01] (200|204|301|302)", data):
+                return None, None
+        except Exception:
+            return None, None
 
 
         exit_ip = get_exit_ip(port, TIMEOUT)
         if not exit_ip:
             return None, None
-
-        # 查 IP 详情，过滤机房 IP
+        # ASN 机房过滤：剔除云厂商 IP，提升微软风控通过率
         try:
-            import urllib.request, json
-            req = urllib.request.Request(f"http://ip-api.com/json/{exit_ip}?fields=isp,org,as", headers={"User-Agent": "curl/7.68.0"})
-            with urllib.request.urlopen(req, timeout=5) as r:
-                info = json.loads(r.read().decode())
-            asn_str = (info.get("isp", "") + " " + info.get("org", "") + " " + info.get("as", "")).lower()
-            bad_kw = ["amazon", "google", "microsoft", "digitalocean", "vultr", "linode", "ovh", "alibaba", "tencent", "leaseweb", "hetzner", "contabo", "oracle", "cloudflare", "akamai"]
-            for kw in bad_kw:
-                if kw in asn_str:
-                    return None, None
+            import urllib.request as _ur, json as _json
+            _cache_key = exit_ip.rsplit(".", 1)[0]
+            _asn = _ASN_CACHE.get(_cache_key)
+            if _asn is None:
+                _req = _ur.Request("http://ip-api.com/json/%s?fields=isp,org,as" % exit_ip, headers={"User-Agent": "curl/7.68.0"})
+                with _ur.urlopen(_req, timeout=5) as _r:
+                    _info = _json.loads(_r.read().decode())
+                _asn = ((_info.get("isp") or "") + " " + (_info.get("org") or "") + " " + (_info.get("as") or "")).lower()
+                _ASN_CACHE[_cache_key] = _asn
+            if any(_kw in _asn for _kw in ("amazon","google","microsoft","digitalocean","vultr","linode","ovh","alibaba","tencent","leaseweb","hetzner","contabo","oracle","cloudflare","akamai")):
+                return None, None
         except Exception:
             pass
-
         if not exit_ip:
             return None, None
         dt = time.time() - t0
