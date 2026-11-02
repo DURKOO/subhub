@@ -694,19 +694,27 @@ def probe(node):
         if not started:
             return None, None
 
-        # 单轮多端点探测：任一端点返回 200/204/301/302 即判活
-        for phost, ppath in PROBE_ENDPOINTS:
-            t0 = time.time()
-            try:
-                data = socks5_http(port, phost, ppath, TIMEOUT)
-            except Exception:
-                data = None
-            if data and re.match(rb"HTTP/1\.[01] (200|204|301|302)", data):
-                dt = time.time() - t0
-                best = dt if best is None else min(best, dt)
-                break
-        if best is not None:
-            exit_ip = get_exit_ip(port, TIMEOUT)
+        # 严格探测：两轮都必须至少 2 个端点返回 200/204/301/302，且必须拿到真实出口 IP
+        for _rnd in range(2):
+            ok = 0
+            for phost, ppath in PROBE_ENDPOINTS:
+                t0 = time.time()
+                try:
+                    data = socks5_http(port, phost, ppath, TIMEOUT)
+                except Exception:
+                    data = None
+                if data and re.match(rb"HTTP/1\.[01] (200|204|301|302)", data):
+                    dt = time.time() - t0
+                    best = dt if best is None else min(best, dt)
+                    ok += 1
+                    if ok >= 2:
+                        break
+            if ok < 2:
+                return None, None
+            time.sleep(0.1)
+        exit_ip = get_exit_ip(port, TIMEOUT)
+        if not exit_ip:
+            return None, None
         return best, exit_ip
     except Exception:
         return None, None
@@ -803,14 +811,12 @@ def main():
             h["latency"] = round(lat, 3)
             history[node["key"]] = h
             node["latency"] = lat
-            if exit_ip:
-                node["exit_ip"] = exit_ip
-                node["ip_src"] = "echo"
-            else:
-                fb = resolve_ip(node["host"])
-                node["exit_ip"] = fb
-                node["ip_src"] = "dns" if fb else "none"
+            if not exit_ip:
+                # 严格模式：拿不到真实出口 IP 直接淘汰
                 ip_unknown += 1
+                continue
+            node["exit_ip"] = exit_ip
+            node["ip_src"] = "echo"
             results.append(node)
 
     alive_keys = {n["key"] for n in results}
@@ -913,6 +919,7 @@ def main():
     b64 = base64.b64encode(body.encode()).decode()
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "sub_base64.txt").write_text(b64 + "\n", encoding="utf-8")
+    (OUT / "sub_strict.b64").write_text(b64 + "\n", encoding="utf-8")
     (OUT / "sub_raw.txt").write_text(body, encoding="utf-8")
     save_json(OUT / "stats.json", {
         "updated": time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime()),
