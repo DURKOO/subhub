@@ -45,6 +45,7 @@ jobs:
 
       - name: 抓取 + 测速 + 生成订阅
         env:
+          EXTRA_SUB_URL: ${{ secrets.EXTRA_SUB_URL }}
           WORKERS: "48"
           PROBE_TIMEOUT: "2"
           KEEP: "1000"
