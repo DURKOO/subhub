@@ -1,33 +1,34 @@
 {
- "updated": "2026-11-02 15:00:01 UTC",
+ "updated": "2026-11-02 15:18:35 UTC",
  "scraped": 6041,
- "parsed": 1995,
+ "parsed": 4690,
  "protocols": {
-  "shadowsocks": 175,
-  "trojan": 419,
-  "vmess": 1078,
-  "hysteria2": 24,
-  "vless": 299
+  "shadowsocks": 1877,
+  "trojan": 751,
+  "vmess": 1520,
+  "shadowsocksr": 60,
+  "hysteria2": 52,
+  "vless": 430
  },
- "alive": 39,
+ "alive": 37,
  "unprobed_skipped": 0,
- "exit_ip_fallback_dns": 989,
+ "exit_ip_fallback_dns": 1226,
  "unique_ip": true,
- "ip_duplicates_removed": 4,
+ "ip_duplicates_removed": 27,
  "latency_max": 1.5,
  "latency_dropped": 0,
- "subnet_duplicates_removed": 5,
+ "subnet_duplicates_removed": 34,
  "max_per_subnet": 2,
- "published": 39,
- "avg_latency": 0.144,
+ "published": 37,
+ "avg_latency": 0.128,
  "best": [
   {
-   "name": "🇬🇧GB-82.38.31.162-0174",
-   "host": "82.38.31.162",
+   "name": "🇺🇸US-198.98.53.130-0239",
+   "host": "198.98.53.130",
    "port": 443,
-   "exit_ip": "193.29.139.221",
+   "exit_ip": "198.98.53.130",
    "ip_src": "echo",
-   "latency": 0.152,
+   "latency": 0.045,
    "proto": "shadowsocks",
    "engine": "xray",
    "history_ok": 25
@@ -38,21 +39,21 @@
    "port": 443,
    "exit_ip": "193.29.139.166",
    "ip_src": "echo",
-   "latency": 0.159,
+   "latency": 0.126,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 25
+   "history_ok": 26
   },
   {
-   "name": "🇺🇸US-198.98.53.130-0239",
-   "host": "198.98.53.130",
+   "name": "🇬🇧GB-82.38.31.174-0229",
+   "host": "82.38.31.174",
    "port": 443,
-   "exit_ip": "198.98.53.130",
+   "exit_ip": "193.29.139.135",
    "ip_src": "echo",
-   "latency": 0.064,
+   "latency": 0.126,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 24
+   "history_ok": 26
   },
   {
    "name": "🇪🇬EG-38.54.59.102-0186",
@@ -60,21 +61,10 @@
    "port": 443,
    "exit_ip": "38.54.59.102",
    "ip_src": "echo",
-   "latency": 0.18,
+   "latency": 0.151,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 17
-  },
-  {
-   "name": "🇵🇱[www.v2nodes.com] vless-PL-1... #2",
-   "host": "87.242.119.253",
-   "port": 443,
-   "exit_ip": "144.31.3.74",
-   "ip_src": "echo",
-   "latency": 0.187,
-   "proto": "vless",
-   "engine": "xray",
-   "history_ok": 16
+   "history_ok": 18
   },
   {
    "name": "🇺🇸204811 | ⚡️Telegram = t.me/S...",
@@ -82,10 +72,10 @@
    "port": 443,
    "exit_ip": "185.8.107.23",
    "ip_src": "echo",
-   "latency": 0.045,
+   "latency": 0.033,
    "proto": "hysteria2",
    "engine": "singbox",
-   "history_ok": 13
+   "history_ok": 14
   },
   {
    "name": "🎃91@oneclickvpnkeys",
@@ -93,43 +83,54 @@
    "port": 443,
    "exit_ip": "109.234.36.245",
    "ip_src": "echo",
-   "latency": 0.172,
+   "latency": 0.136,
    "proto": "hysteria2",
    "engine": "singbox",
-   "history_ok": 13
-  },
-  {
-   "name": "🇺🇸[openproxylist.com] vless-US",
-   "host": "67.209.184.133",
-   "port": 443,
-   "exit_ip": "67.209.184.133",
-   "ip_src": "echo",
-   "latency": 0.011,
-   "proto": "vless",
-   "engine": "xray",
-   "history_ok": 11
+   "history_ok": 14
   },
   {
    "name": "🇪🇸[openproxylist.com] vless-ES",
    "host": "156.252.229.136",
    "port": 8443,
-   "exit_ip": "76.164.203.120",
+   "exit_ip": "76.164.203.109",
    "ip_src": "echo",
-   "latency": 0.154,
+   "latency": 0.129,
+   "proto": "vless",
+   "engine": "xray",
+   "history_ok": 13
+  },
+  {
+   "name": "🇦🇪_AE_阿拉伯联合酋长国->🇫🇮_FI_芬兰_IPV4 (2)",
+   "host": "217.60.73.56",
+   "port": 443,
+   "exit_ip": "217.60.72.225",
+   "ip_src": "echo",
+   "latency": 0.136,
+   "proto": "hysteria2",
+   "engine": "singbox",
+   "history_ok": 13
+  },
+  {
+   "name": "🏳[openproxylist.com] vless-",
+   "host": "67.209.184.133",
+   "port": 443,
+   "exit_ip": "67.209.184.133",
+   "ip_src": "echo",
+   "latency": 0.04,
    "proto": "vless",
    "engine": "xray",
    "history_ok": 12
   },
   {
-   "name": "伊朗+V2CROSS.COM",
-   "host": "217.60.73.56",
+   "name": "🇺🇸[www.v2nodes.com] vless-US-1... #2",
+   "host": "us3.shtil.io",
    "port": 443,
-   "exit_ip": "217.60.72.225",
+   "exit_ip": "85.155.179.206",
    "ip_src": "echo",
-   "latency": 0.157,
-   "proto": "hysteria2",
-   "engine": "singbox",
-   "history_ok": 12
+   "latency": 0.075,
+   "proto": "vless",
+   "engine": "xray",
+   "history_ok": 13
   }
  ]
 }
