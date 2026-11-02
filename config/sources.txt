@@ -1,5 +1,5 @@
 # SubHub 订阅源列表
-# 实测存活源（2026-11-02）
+# 实测存活源 + 高质量 Reality/VLESS 源（2026-11-02）
 
 # ===== 高产聚合源 =====
 https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt
@@ -13,3 +13,8 @@ https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub
 https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub
 https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt
 https://raw.githubusercontent.com/ermaozi01/free_clash_vpn/main/subscribe/v2ray.txt
+
+# ===== 新增高质量源（含 VLESS/Reality） =====
+https://raw.githubusercontent.com/Kwinshadow/TelegramV2rayCollector/main/sublinks/mix.txt
+https://raw.githubusercontent.com/MrPooyaX/SansorchiFucker/main/data.txt
+https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt
