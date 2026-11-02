@@ -529,7 +529,10 @@ def parse_uri(uri):
             # 国内被 QoS 的高危端口黑名单（vpnbook/nebulacloud 等免费节点常用）
             if port in (19999, 20000, 35043, 8018, 64546, 57353, 43385, 15501, 13209):
                 return None
-            if port < 1024 and port not in (443, 80):
+            # 国内可用端口白名单：仅保留标准 Web/CF 端口，彻底屏蔽 QoS 高危端口
+            ALLOWED_PORTS = {443, 80, 8443, 2053, 2083, 2087, 2096}
+            if port not in ALLOWED_PORTS:
+                return None
                 return None
             # 只拦截 1-1023 非标准端口，其余全部放行
             if 1024 <= port <= 65535:
