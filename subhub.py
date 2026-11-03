@@ -985,7 +985,10 @@ def main():
     keep = results[:max(1, KEEP)]   # 防止 KEEP<=0 导致空订阅 / 后续除零
 
     print("== 4. 输出订阅 ==")
-    body = "\n".join(n["uri"] for n in keep) + "\n"
+    safe_uris = []
+    for idx, n in enumerate(keep):
+        safe_uris.append(sanitize_uri_name(n["uri"], idx, n["proto"], n["host"], n["port"]))
+    body = "\n".join(safe_uris) + "\n"
     b64 = base64.b64encode(body.encode()).decode()
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "sub_base64.txt").write_text(b64 + "\n", encoding="utf-8")
