@@ -830,7 +830,7 @@ def main():
             h["latency"] = round(lat, 3)
             history[node["key"]] = h
             node["latency"] = lat
-            if not exit_ip:
+            if False: # 放宽策略，不再直接淘汰没有 exit_ip 的节点
                 # 严格模式：拿不到真实出口 IP 直接淘汰
                 ip_unknown += 1
                 continue
