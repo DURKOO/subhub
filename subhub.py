@@ -987,7 +987,11 @@ def main():
     print("== 4. 输出订阅 ==")
     safe_uris = []
     for idx, n in enumerate(keep):
-        safe_uris.append(sanitize_uri_name(n["uri"], idx, n["proto"], n["host"], n["port"]))
+        u = n["uri"]
+        if ("type=xhttp" in u) or ("extra=" in u) or ("%7B" in u) or ("%7D" in u):
+            continue
+        u = u.replace("?&", "?").replace("&&", "&").replace("=%2F", "=/").replace("=%2f", "=/")
+        safe_uris.append(sanitize_uri_name(u, idx, n["proto"], n["host"], n["port"]))
     body = "\n".join(safe_uris) + "\n"
     b64 = base64.b64encode(body.encode()).decode()
     OUT.mkdir(parents=True, exist_ok=True)
