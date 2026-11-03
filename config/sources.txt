@@ -19,12 +19,6 @@ https://raw.githubusercontent.com/Kwinshadow/TelegramV2rayCollector/main/sublink
 https://raw.githubusercontent.com/MrPooyaX/SansorchiFucker/main/data.txt
 https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt
 
-# ===== 新增顶级高质量源 (2026-11) =====
-https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_base64_Sub.txt
-https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/splitted/mixed
+# ===== 可用优质源（2026-11） =====
 https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/server.txt
-https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/All_Configs_base64_Sub.txt
-https://raw.githubusercontent.com/MahsaNetConfigTopic/config/refs/heads/main/xray_final.txt
-https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/python/sublist.txt
-https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt
 https://raw.githubusercontent.com/w1770946466/Auto_proxy/main/Long_term_subscription_num
