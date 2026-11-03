@@ -1,37 +1,48 @@
 {
- "updated": "2026-11-03 14:28:43 UTC",
- "scraped": 11367,
- "parsed": 7988,
+ "updated": "2026-11-03 23:34:37 UTC",
+ "scraped": 11389,
+ "parsed": 8034,
  "protocols": {
   "shadowsocks": 1974,
-  "trojan": 861,
-  "vmess": 4105,
+  "trojan": 846,
+  "vmess": 4121,
   "shadowsocksr": 63,
-  "hysteria2": 62,
-  "vless": 923
+  "hysteria2": 69,
+  "vless": 961
  },
- "alive": 1366,
+ "alive": 1390,
  "unprobed_skipped": 0,
  "exit_ip_fallback_dns": 0,
  "unique_ip": true,
- "ip_duplicates_removed": 807,
+ "ip_duplicates_removed": 833,
  "latency_max": 1.5,
- "latency_dropped": 7,
- "subnet_duplicates_removed": 52,
+ "latency_dropped": 2,
+ "subnet_duplicates_removed": 61,
  "max_per_subnet": 2,
  "published": 1000,
- "avg_latency": 0.091,
+ "avg_latency": 0.095,
  "best": [
+  {
+   "name": "CA 🇨🇦 | @Raydikalx | 32C3CC",
+   "host": "198.41.193.181",
+   "port": 80,
+   "exit_ip": null,
+   "ip_src": "echo",
+   "latency": 0.009,
+   "proto": "vmess",
+   "engine": "xray",
+   "history_ok": 8
+  },
   {
    "name": "🇺🇸US-198.98.53.130-0290",
    "host": "198.98.53.130",
    "port": 443,
    "exit_ip": "198.98.53.130",
    "ip_src": "echo",
-   "latency": 0.057,
+   "latency": 0.046,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 34
+   "history_ok": 35
   },
   {
    "name": "🇬🇧GB-82.38.31.162-0220",
@@ -39,43 +50,21 @@
    "port": 443,
    "exit_ip": "193.29.139.221",
    "ip_src": "echo",
-   "latency": 0.143,
+   "latency": 0.125,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 35
+   "history_ok": 36
   },
   {
-   "name": "🇬🇧GB-82.38.31.159-0236",
-   "host": "82.38.31.159",
+   "name": "🇬🇧GB-82.38.31.174-0245",
+   "host": "82.38.31.174",
    "port": 443,
-   "exit_ip": "193.29.139.166",
+   "exit_ip": "193.29.139.135",
    "ip_src": "echo",
-   "latency": 0.144,
+   "latency": 0.126,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 35
-  },
-  {
-   "name": "🇪🇬EG-38.54.59.102-0263",
-   "host": "38.54.59.102",
-   "port": 443,
-   "exit_ip": "38.54.59.102",
-   "ip_src": "echo",
-   "latency": 0.168,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 27
-  },
-  {
-   "name": "CA 🇨🇦 | @Raydikalx | 81A1B6",
-   "host": "198.41.193.181",
-   "port": 80,
-   "exit_ip": null,
-   "ip_src": "echo",
-   "latency": 0.008,
-   "proto": "vmess",
-   "engine": "xray",
-   "history_ok": 7
+   "history_ok": 36
   },
   {
    "name": "⚡96@oneclickvpnkeys",
@@ -83,32 +72,10 @@
    "port": 443,
    "exit_ip": "185.8.107.23",
    "ip_src": "echo",
-   "latency": 0.049,
+   "latency": 0.014,
    "proto": "hysteria2",
    "engine": "singbox",
-   "history_ok": 23
-  },
-  {
-   "name": "🏁RELAY-198.41.203.6-1589",
-   "host": "198.41.203.6",
-   "port": 443,
-   "exit_ip": null,
-   "ip_src": "echo",
-   "latency": 0.009,
-   "proto": "vmess",
-   "engine": "xray",
-   "history_ok": 15
-  },
-  {
-   "name": "🏁RELAY-198.41.203.5-1996",
-   "host": "198.41.203.5",
-   "port": 443,
-   "exit_ip": null,
-   "ip_src": "echo",
-   "latency": 0.009,
-   "proto": "vmess",
-   "engine": "xray",
-   "history_ok": 15
+   "history_ok": 24
   },
   {
    "name": "🏁RELAY-198.41.208.172-3737",
@@ -116,10 +83,32 @@
    "port": 443,
    "exit_ip": null,
    "ip_src": "echo",
-   "latency": 0.009,
+   "latency": 0.008,
    "proto": "vmess",
    "engine": "xray",
-   "history_ok": 15
+   "history_ok": 16
+  },
+  {
+   "name": "🏁RELAY-198.41.203.6-1589",
+   "host": "198.41.203.6",
+   "port": 443,
+   "exit_ip": null,
+   "ip_src": "echo",
+   "latency": 0.013,
+   "proto": "vmess",
+   "engine": "xray",
+   "history_ok": 16
+  },
+  {
+   "name": "🏁RELAY-198.41.203.5-0403",
+   "host": "198.41.203.5",
+   "port": 443,
+   "exit_ip": null,
+   "ip_src": "echo",
+   "latency": 0.014,
+   "proto": "vmess",
+   "engine": "xray",
+   "history_ok": 16
   },
   {
    "name": "🏁RELAY-198.41.203.3-1999",
@@ -127,10 +116,21 @@
    "port": 443,
    "exit_ip": null,
    "ip_src": "echo",
-   "latency": 0.009,
+   "latency": 0.015,
    "proto": "vmess",
    "engine": "xray",
-   "history_ok": 15
+   "history_ok": 16
+  },
+  {
+   "name": "🇪🇸[openproxylist.com] vless-ES",
+   "host": "156.252.229.136",
+   "port": 8443,
+   "exit_ip": "76.164.203.123",
+   "ip_src": "echo",
+   "latency": 0.127,
+   "proto": "vless",
+   "engine": "xray",
+   "history_ok": 23
   }
  ]
 }
