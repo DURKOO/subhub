@@ -940,6 +940,14 @@ def main():
         print("[x] 端口白名单过滤后无可用节点")
         return 1
 
+    def sanitize_uri_name(uri):
+        if "#" not in uri:
+            return uri
+        base, frag = uri.split("#", 1)
+        frag = urllib.parse.unquote(frag)
+        frag = re.sub(r"[\\/:*?\"<>|{}\[\]&*#]", "_", frag)
+        return base + "#" + urllib.parse.quote(frag)
+
     keep = results[:max(1, KEEP)]   # 防止 KEEP<=0 导致空订阅 / 后续除零
 
     print("== 4. 输出订阅 ==")
