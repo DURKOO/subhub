@@ -65,6 +65,6 @@ jobs:
             echo "无变化"
           else
             git commit -m "chore: update subscription $(date -u +'%Y-%m-%d %H:%M UTC')"
-            git pull --rebase origin su || true
-            git push
+            git pull --rebase --autostash origin su || git rebase --abort
+            git push -f origin HEAD:su
           fi
