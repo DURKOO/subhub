@@ -942,12 +942,28 @@ def main():
 
     def sanitize_uri_name(uri, idx, proto, host, port):
         new_name = "%s-%s-%s-%d" % (proto, host, port, idx)
+
+        def _yaml_unsafe(v):
+            if not v:
+                return False
+            c = v[0]
+            if c in "@`%!&*|>{}[],'\"#":
+                return True
+            if c in "-?:" and len(v) > 1 and v[1] == " ":
+                return True
+            if ": " in v or " #" in v:
+                return True
+            return False
+
         if uri.startswith("vmess://"):
             import base64 as _b64, json as _json
             body = uri[8:]
             try:
                 raw = _b64.b64decode(body + "==").decode("utf-8", "ignore")
                 j = _json.loads(raw)
+                for _k, _v in list(j.items()):
+                    if isinstance(_v, str) and _yaml_unsafe(_v):
+                        return None
                 j["ps"] = new_name
                 raw_new = _json.dumps(j, ensure_ascii=False)
                 return "vmess://" + _b64.b64encode(raw_new.encode()).decode()
@@ -991,7 +1007,10 @@ def main():
         if ("type=xhttp" in u) or ("extra=" in u) or ("%7B" in u) or ("%7D" in u):
             continue
         u = u.replace("?&", "?").replace("&&", "&").replace("=%2F", "=/").replace("=%2f", "=/")
-        safe_uris.append(sanitize_uri_name(u, idx, n["proto"], n["host"], n["port"]))
+        _s = sanitize_uri_name(u, idx, n["proto"], n["host"], n["port"])
+        if _s is None:
+            continue
+        safe_uris.append(_s)
     body = "\n".join(safe_uris) + "\n"
     b64 = base64.b64encode(body.encode()).decode()
     OUT.mkdir(parents=True, exist_ok=True)
