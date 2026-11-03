@@ -940,13 +940,47 @@ def main():
         print("[x] 端口白名单过滤后无可用节点")
         return 1
 
-    def sanitize_uri_name(uri):
-        if "#" not in uri:
+    def sanitize_uri_name(uri, idx, proto, host, port):
+        new_name = "%s-%s-%s-%d" % (proto, host, port, idx)
+        if uri.startswith("vmess://"):
+            import base64 as _b64, json as _json
+            body = uri[8:]
+            try:
+                raw = _b64.b64decode(body + "==").decode("utf-8", "ignore")
+                j = _json.loads(raw)
+                j["ps"] = new_name
+                raw_new = _json.dumps(j, ensure_ascii=False)
+                return "vmess://" + _b64.b64encode(raw_new.encode()).decode()
+            except Exception:
+                pass
+            if "#" in uri:
+                return uri.split("#")[0] + "#" + new_name
             return uri
-        base, frag = uri.split("#", 1)
-        frag = urllib.parse.unquote(frag)
-        frag = re.sub(r"[\\/:*?\"<>|{}\[\]&*#]", "_", frag)
-        return base + "#" + urllib.parse.quote(frag)
+        if uri.startswith("ssr://"):
+            import base64 as _b64
+            body = uri[6:]
+            try:
+                raw = _b64.b64decode(body + "==").decode("utf-8", "ignore")
+                if "/?" in raw:
+                    main, qs = raw.split("/?", 1)
+                else:
+                    main, qs = raw, ""
+                qs_parts = []
+                for part in qs.split("&"):
+                    if part.startswith("remarks="):
+                        qs_parts.append("remarks=" + _b64.b64encode(new_name.encode()).decode().replace("=", ""))
+                    else:
+                        qs_parts.append(part)
+                raw_new = main + "/?" + "&".join(qs_parts)
+                return "ssr://" + _b64.b64encode(raw_new.encode()).decode()
+            except Exception:
+                pass
+            if "#" in uri:
+                return uri.split("#")[0] + "#" + new_name
+            return uri
+        if "#" in uri:
+            return uri.split("#")[0] + "#" + new_name
+        return uri + "#" + new_name
 
     keep = results[:max(1, KEEP)]   # 防止 KEEP<=0 导致空订阅 / 后续除零
 
