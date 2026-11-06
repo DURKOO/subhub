@@ -1,26 +1,26 @@
 {
- "updated": "2026-11-06 07:00:15 UTC",
- "scraped": 11469,
- "parsed": 8050,
+ "updated": "2026-11-06 19:35:35 UTC",
+ "scraped": 11360,
+ "parsed": 8079,
  "protocols": {
-  "shadowsocks": 1968,
-  "trojan": 740,
-  "vmess": 4204,
+  "shadowsocks": 2029,
+  "trojan": 753,
+  "vmess": 4220,
   "shadowsocksr": 63,
-  "hysteria2": 58,
-  "vless": 1017
+  "hysteria2": 62,
+  "vless": 952
  },
- "alive": 1352,
+ "alive": 1319,
  "unprobed_skipped": 0,
  "exit_ip_fallback_dns": 0,
  "unique_ip": true,
- "ip_duplicates_removed": 901,
+ "ip_duplicates_removed": 866,
  "latency_max": 1.5,
- "latency_dropped": 2,
- "subnet_duplicates_removed": 58,
+ "latency_dropped": 5,
+ "subnet_duplicates_removed": 64,
  "max_per_subnet": 2,
  "published": 1000,
- "avg_latency": 0.096,
+ "avg_latency": 0.101,
  "best": [
   {
    "name": "CA 🇨🇦 | @Raydikalx | 32C3CC",
@@ -28,32 +28,10 @@
    "port": 80,
    "exit_ip": null,
    "ip_src": "echo",
-   "latency": 0.002,
+   "latency": 0.009,
    "proto": "vmess",
    "engine": "xray",
-   "history_ok": 13
-  },
-  {
-   "name": "🏁RELAY-198.41.203.5-0405",
-   "host": "198.41.203.5",
-   "port": 443,
-   "exit_ip": null,
-   "ip_src": "echo",
-   "latency": 0.002,
-   "proto": "vmess",
-   "engine": "xray",
-   "history_ok": 21
-  },
-  {
-   "name": "🏁RELAY-198.41.203.3-1976",
-   "host": "198.41.203.3",
-   "port": 443,
-   "exit_ip": null,
-   "ip_src": "echo",
-   "latency": 0.002,
-   "proto": "vmess",
-   "engine": "xray",
-   "history_ok": 21
+   "history_ok": 14
   },
   {
    "name": "🏁RELAY-198.41.203.6-1558",
@@ -61,10 +39,32 @@
    "port": 443,
    "exit_ip": null,
    "ip_src": "echo",
-   "latency": 0.002,
+   "latency": 0.009,
    "proto": "vmess",
    "engine": "xray",
-   "history_ok": 21
+   "history_ok": 22
+  },
+  {
+   "name": "🏁RELAY-198.41.203.5-1973",
+   "host": "198.41.203.5",
+   "port": 443,
+   "exit_ip": null,
+   "ip_src": "echo",
+   "latency": 0.009,
+   "proto": "vmess",
+   "engine": "xray",
+   "history_ok": 22
+  },
+  {
+   "name": "🏁RELAY-198.41.203.3-1976",
+   "host": "198.41.203.3",
+   "port": 443,
+   "exit_ip": null,
+   "ip_src": "echo",
+   "latency": 0.009,
+   "proto": "vmess",
+   "engine": "xray",
+   "history_ok": 22
   },
   {
    "name": "🏁RELAY-198.41.208.172-3612",
@@ -72,10 +72,10 @@
    "port": 443,
    "exit_ip": null,
    "ip_src": "echo",
-   "latency": 0.002,
+   "latency": 0.009,
    "proto": "vmess",
    "engine": "xray",
-   "history_ok": 21
+   "history_ok": 22
   },
   {
    "name": "🏁RELAY-198.41.202.5-0129",
@@ -83,10 +83,10 @@
    "port": 443,
    "exit_ip": null,
    "ip_src": "echo",
-   "latency": 0.002,
+   "latency": 0.009,
    "proto": "vmess",
    "engine": "xray",
-   "history_ok": 13
+   "history_ok": 14
   },
   {
    "name": "vless-1854038780",
@@ -94,10 +94,10 @@
    "port": 443,
    "exit_ip": "185.95.231.156",
    "ip_src": "echo",
-   "latency": 0.064,
+   "latency": 0.056,
    "proto": "vless",
    "engine": "xray",
-   "history_ok": 26
+   "history_ok": 27
   },
   {
    "name": "🇺🇸US-198.98.53.130-0253",
@@ -105,32 +105,32 @@
    "port": 443,
    "exit_ip": "198.98.53.130",
    "ip_src": "echo",
-   "latency": 0.063,
+   "latency": 0.058,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 40
+   "history_ok": 41
   },
   {
-   "name": "🇮🇷[openproxylist.com] vless-IR",
-   "host": "198.16.113.220",
-   "port": 8443,
-   "exit_ip": "185.211.59.15",
+   "name": "🇬🇧GB-82.38.31.170-0211",
+   "host": "82.38.31.170",
+   "port": 443,
+   "exit_ip": "193.29.139.172",
    "ip_src": "echo",
-   "latency": 0.139,
-   "proto": "vless",
+   "latency": 0.143,
+   "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 26
+   "history_ok": 42
   },
   {
-   "name": "🇮🇷[openproxylist.com] vless-IR",
-   "host": "198.16.113.221",
-   "port": 8443,
-   "exit_ip": "185.211.59.31",
+   "name": "🇬🇧GB-82.38.31.159-0215",
+   "host": "82.38.31.159",
+   "port": 443,
+   "exit_ip": "193.29.139.166",
    "ip_src": "echo",
-   "latency": 0.14,
-   "proto": "vless",
+   "latency": 0.144,
+   "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 26
+   "history_ok": 42
   }
  ]
 }
