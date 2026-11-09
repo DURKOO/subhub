@@ -509,6 +509,156 @@ PARSERS = (
 )
 
 
+# ------------------------------------------------- Clash YAML 解析（无 PyYAML 依赖）
+
+def _clash_strip(v):
+    v = (v or "").strip()
+    if len(v) >= 2 and v[0] == v[-1] and v[0] in ("'", '"'):
+        v = v[1:-1]
+    return v
+
+
+def _clash_bool(v):
+    return _clash_strip(v).lower() in ("true", "1", "yes")
+
+
+def _clash_to_uri(p):
+    t = _clash_strip(p.get("type")).lower()
+    server = _clash_strip(p.get("server"))
+    port = _clash_strip(p.get("port"))
+    name = _clash_strip(p.get("name")) or ("%s:%s" % (server, port))
+    if not server or not port:
+        return None
+    name_q = urllib.parse.quote(name, safe="")
+    net = (_clash_strip(p.get("network")) or "tcp").lower()
+    sec = _clash_strip(p.get("security")).lower()
+    tls = _clash_bool(p.get("tls")) or sec in ("tls", "reality")
+    sni = (_clash_strip(p.get("servername")) or _clash_strip(p.get("sni"))
+           or _clash_strip(p.get("server")))
+    ws_path = _clash_strip(p.get("path")) or "/"
+    ws_host = _clash_strip(p.get("Host")) or _clash_strip(p.get("host")) or ""
+    fp = _clash_strip(p.get("client-fingerprint")) or _clash_strip(p.get("fingerprint"))
+    try:
+        if t == "ss":
+            cipher = _clash_strip(p.get("cipher"))
+            pwd = _clash_strip(p.get("password"))
+            if not cipher or not pwd:
+                return None
+            userinfo = base64.b64encode(("%s:%s" % (cipher, pwd)).encode()).decode().rstrip("=")
+            return "ss://%s@%s:%s#%s" % (userinfo, server, port, name_q)
+        if t == "vmess":
+            j = {
+                "v": "2", "ps": name, "add": server, "port": str(port),
+                "id": _clash_strip(p.get("uuid")),
+                "aid": _clash_strip(p.get("alterId")) or "0",
+                "scy": _clash_strip(p.get("cipher")) or "auto",
+                "net": net, "type": "none", "host": ws_host, "path": ws_path,
+                "tls": "tls" if tls else "", "sni": sni,
+                "alpn": _clash_strip(p.get("alpn")), "fp": fp,
+            }
+            raw = json.dumps(j, ensure_ascii=False, separators=(",", ":")).encode()
+            return "vmess://" + base64.b64encode(raw).decode()
+        if t == "vless":
+            uuid = _clash_strip(p.get("uuid"))
+            if not uuid:
+                return None
+            q = {"encryption": "none", "type": net}
+            if tls:
+                q["security"] = sec or "tls"
+                if sec == "reality":
+                    q["pbk"] = _clash_strip(p.get("public-key"))
+                    q["sid"] = _clash_strip(p.get("short-id"))
+                    q["spx"] = _clash_strip(p.get("spider-x")) or "/"
+            if sni:
+                q["sni"] = sni
+            if fp:
+                q["fp"] = fp
+            flow = _clash_strip(p.get("flow"))
+            if flow:
+                q["flow"] = flow
+            if net in ("ws", "httpupgrade", "grpc", "xhttp"):
+                if ws_host:
+                    q["host"] = ws_host
+                if ws_path:
+                    q["path"] = ws_path
+                if net == "grpc":
+                    q["serviceName"] = ws_path
+            if _clash_bool(p.get("skip-cert-verify")):
+                q["allowInsecure"] = "1"
+            return "vless://%s@%s:%s?%s#%s" % (
+                uuid, server, port, urllib.parse.urlencode(q, safe="/"), name_q)
+        if t == "trojan":
+            pwd = _clash_strip(p.get("password"))
+            if not pwd:
+                return None
+            q = {"security": "tls"}
+            if sni:
+                q["sni"] = sni
+            if net in ("ws", "grpc"):
+                q["type"] = net
+                if ws_host:
+                    q["host"] = ws_host
+                if ws_path:
+                    q["path"] = ws_path
+            if _clash_bool(p.get("skip-cert-verify")):
+                q["allowInsecure"] = "1"
+            return "trojan://%s@%s:%s?%s#%s" % (
+                urllib.parse.quote(pwd, safe=""), server, port,
+                urllib.parse.urlencode(q, safe="/"), name_q)
+        if t in ("hysteria2", "hy2"):
+            pwd = _clash_strip(p.get("password")) or _clash_strip(p.get("auth"))
+            if not pwd:
+                return None
+            q = {}
+            if sni:
+                q["sni"] = sni
+            if _clash_bool(p.get("skip-cert-verify")):
+                q["insecure"] = "1"
+            return "hysteria2://%s@%s:%s?%s#%s" % (
+                urllib.parse.quote(pwd, safe=""), server, port,
+                urllib.parse.urlencode(q), name_q)
+    except Exception:
+        return None
+    return None
+
+
+def clash_yaml_to_uris(txt):
+    """把 Clash 配置 proxies: 段转成 URI 列表，供 parse_uri 复用。"""
+    lines = txt.splitlines()
+    start = -1
+    for i, ln in enumerate(lines):
+        if re.match(r'^proxies:\s*$', ln):
+            start = i + 1
+            break
+    if start < 0:
+        return []
+    blocks = []
+    cur = None
+    for ln in lines[start:]:
+        if not ln.strip():
+            continue
+        if re.match(r'^[A-Za-z]', ln):
+            break
+        m = re.match(r'^\s*-\s+(.*)$', ln)
+        if m:
+            cur = {}
+            blocks.append(cur)
+            km = re.match(r'^([A-Za-z0-9_-]+):\s*(.*)$', m.group(1).strip())
+            if km:
+                cur[km.group(1)] = km.group(2).strip()
+            continue
+        if cur is None:
+            continue
+        km = re.match(r'^\s+([A-Za-z0-9_-]+):\s*(.*)$', ln)
+        if km:
+            cur[km.group(1)] = km.group(2).strip()
+    uris = []
+    for p in blocks:
+        u = _clash_to_uri(p)
+        if u:
+            uris.append(u)
+    return uris
+
 def parse_uri(uri):
     for prefix, fn in PARSERS:
         if uri.startswith(prefix):
@@ -563,7 +713,14 @@ def collect():
                 if "://" in line and not line.startswith("#"):
                     lines.append(line)
                     n += 1
-            print("[+] %-70s %5d 行" % (url[:70], n))
+            # Clash YAML 源：解析 proxies: 段并转 URI
+            if n == 0 and ("proxies:" in txt or txt.lstrip().startswith(("mixed-port", "port:", "allow-lan"))):
+                curis = clash_yaml_to_uris(txt)
+                lines.extend(curis)
+                n = len(curis)
+                print("[+] %-70s %5d 行（Clash YAML）" % (url[:70], n))
+            else:
+                print("[+] %-70s %5d 行" % (url[:70], n))
         except Exception as e:
             print("[!] %-70s %s" % (url[:70], e))
     extra = CONF / "extra_nodes.txt"
@@ -578,8 +735,6 @@ def collect():
     else:
         print("[!] config/extra_nodes.txt 不存在")
     return lines
-
-
 # ------------------------------------------------- 引擎启动
 
 def start_engine(engine, outbound, port):
@@ -1021,6 +1176,40 @@ def main():
     cand_body = "\n".join(n["uri"] for n in nodes.values()) + "\n"
     (OUT / "sub_candidates.txt").write_text(cand_body, encoding="utf-8")
     print("   候选池 sub_candidates.txt: %d 个节点" % len(nodes))
+    # ===== 精选：出口 host 唯一 =====
+    def _host_of(u):
+        try:
+            s = re.sub(r'^[a-z0-9]+://', '', u)
+            s = s.split('#')[0]
+            if '@' in s:
+                s = s.split('@', 1)[1]
+            s = s.split('?')[0]
+            s = re.sub(r':\d+$', '', s)
+            return s.strip('[]').lower()
+        except Exception:
+            return ""
+
+    def _net24(h):
+        m = re.match(r'^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.\d{1,3}$', h)
+        return ".".join(m.groups()) if m else h
+
+    seen_h, seen_n = set(), set()
+    premium = []
+    for u in safe_uris:
+        h = _host_of(u)
+        if not h or h in seen_h:
+            continue
+        n24 = _net24(h)
+        if n24 in seen_n:
+            continue
+        seen_h.add(h)
+        seen_n.add(n24)
+        premium.append(u)
+    prem_body = "\n".join(premium) + "\n"
+    (OUT / "sub_premium.txt").write_text(prem_body, encoding="utf-8")
+    (OUT / "sub_premium.b64").write_text(
+        base64.b64encode(prem_body.encode()).decode() + "\n", encoding="utf-8")
+    print("   精选 sub_premium: %d 个唯一出口（每 /24 仅 1 个）" % len(premium))
     save_json(OUT / "stats.json", {
         "updated": time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime()),
         "scraped": len(raw_lines),
