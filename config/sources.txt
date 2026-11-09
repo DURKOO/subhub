@@ -1,11 +1,17 @@
 # SubHub 订阅源列表
-# 实测存活源 + 高质量 Reality/VLESS 源（2026-11-02）
+# 实测存活源 + 高质量 Reality/VLESS 源（2026-11-09）
 
-# ===== 高产聚合源 =====
+# ===== 高产聚合源（URI 格式）=====
 https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt
 https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt
 https://raw.githubusercontent.com/ts-sf/fly/main/v2
 https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.txt
+
+# ===== 高产聚合源（Clash YAML 格式，由 clash_yaml_to_uris 解析）=====
+https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.yml
+https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml
+https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml
+https://raw.githubusercontent.com/ts-sf/fly/main/clash
 
 # ===== 直连 VPS / 高质量补充源 =====
 https://raw.githubusercontent.com/freefq/free/master/v2
@@ -14,11 +20,11 @@ https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub
 https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt
 https://raw.githubusercontent.com/ermaozi01/free_clash_vpn/main/subscribe/v2ray.txt
 
-# ===== 新增高质量源（含 VLESS/Reality） =====
+# ===== 新增高质量源（含 VLESS/Reality）=====
 https://raw.githubusercontent.com/Kwinshadow/TelegramV2rayCollector/main/sublinks/mix.txt
 https://raw.githubusercontent.com/MrPooyaX/SansorchiFucker/main/data.txt
 https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt
 
-# ===== 可用优质源（2026-11） =====
+# ===== 可用优质源（2026-11）=====
 https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/server.txt
 https://raw.githubusercontent.com/w1770946466/Auto_proxy/main/Long_term_subscription_num
