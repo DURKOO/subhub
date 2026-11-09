@@ -870,6 +870,19 @@ def probe(node):
                 proc = path = None
         if not started:
             return None, None
+        # 1.5 等待本地 SOCKS5 端口真正就绪（引擎刚起，bind 有延迟，不等会误判）
+        _ready = False
+        _deadline = time.time() + TIMEOUT
+        while time.time() < _deadline:
+            try:
+                _t = socket.create_connection(("127.0.0.1", port), timeout=0.5)
+                _t.close()
+                _ready = True
+                break
+            except Exception:
+                time.sleep(0.05)
+        if not _ready:
+            return None, None
 
         # 1. 基础 TCP 连通性测试（直接连节点本身，不经过代理）
         t0 = time.time()
