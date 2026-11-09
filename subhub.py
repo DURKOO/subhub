@@ -1122,13 +1122,26 @@ def main():
         print("   网段去重(/24 上限 %d): 移除 %d 个，剩 %d"
               % (MAX_PER_SUBNET, subnet_removed, len(results)))
 
-    # 端口白名单过滤：只保留标准 Web/CF 端口，剔除 QoS 高危端口
-    ALLOWED_PORTS = {443, 80, 8443, 2053, 2083, 2087, 2096}
+    # 端口白名单过滤（可选）：默认关闭。PORT_WHITELIST 为空则不过滤；
+    # 设成 "443,80,8443" 之类才启用，避免误杀大量可用非标端口节点。
+    _pl_raw = os.environ.get("PORT_WHITELIST", "").strip()
+    if _pl_raw:
+        ALLOWED_PORTS = set()
+        for _x in _pl_raw.split(","):
+            _x = _x.strip()
+            if _x.isdigit():
+                ALLOWED_PORTS.add(int(_x))
+    else:
+        ALLOWED_PORTS = None
     before_port = len(results)
-    results = [n for n in results if int(n.get("port") or 0) in ALLOWED_PORTS]
-    print("   端口白名单过滤: 移除 %d 个非标端口节点，剩 %d" % (before_port - len(results), len(results)))
+    if ALLOWED_PORTS:
+        results = [n for n in results if int(n.get("port") or 0) in ALLOWED_PORTS]
+        print("   端口白名单过滤: 移除 %d 个非标端口节点，剩 %d"
+              % (before_port - len(results), len(results)))
+    else:
+        print("   端口白名单过滤: 已关闭（PORT_WHITELIST 未设置），保留全部 %d 个" % before_port)
     if not results:
-        print("[x] 端口白名单过滤后无可用节点")
+        print("[x] 端口过滤后无可用节点")
         return 1
 
     def sanitize_uri_name(uri, idx, proto, host, port):
