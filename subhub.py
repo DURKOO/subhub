@@ -69,19 +69,21 @@ IPV4_RE = re.compile(rb"\b((?:\d{1,3}\.){3}\d{1,3})\b")
 # (host, port, path, 解析方式)
 # 出口 IP 回显源：80 明文 + 443 TLS 双通道，覆盖只放行 443 的节点
 # (host, port, path, 解析方式)
+# 出口 IP 回显源：443 TLS 优先（多数节点只放行 443），80 明文补充
+# (host, port, path, 解析方式)
 IP_ECHO_SOURCES = (
+    ("api.ipify.org", 443, "/", "text"),
+    ("ipinfo.io", 443, "/ip", "text"),
+    ("ipv4.icanhazip.com", 443, "/", "text"),
+    ("www.cloudflare.com", 443, "/cdn-cgi/trace", "text"),
+    ("api.ip.sb", 443, "/ip", "text"),
+    ("ifconfig.me", 443, "/ip", "text"),
+    ("checkip.amazonaws.com", 443, "/", "text"),
     ("api.ipify.org", 80, "/", "text"),
     ("ip-api.com", 80, "/line/?fields=query", "text"),
     ("ifconfig.me", 80, "/ip", "text"),
     ("ip.3322.net", 80, "/", "text"),
     ("myip.ipip.net", 80, "/", "text"),
-    ("api.ipify.org", 443, "/", "text"),
-    ("ifconfig.me", 443, "/ip", "text"),
-    ("ipinfo.io", 443, "/ip", "text"),
-    ("api.ip.sb", 443, "/ip", "text"),
-    ("ipv4.icanhazip.com", 443, "/", "text"),
-    ("checkip.amazonaws.com", 443, "/", "text"),
-    ("www.cloudflare.com", 443, "/cdn-cgi/trace", "text"),
 )
 
 _ASN_CACHE = {}
@@ -882,8 +884,8 @@ def probe(node):
 
         # 2. 尝试通过代理拿真实出口 IP（拿不到不判死，仅用于 ASN 过滤）
         exit_ip = None
-        _echo_budget = int(os.environ.get("ECHO_TRIES", "4"))
-        _echo_to = min(TIMEOUT, float(os.environ.get("ECHO_TIMEOUT", "5")))
+        _echo_budget = int(os.environ.get("ECHO_TRIES", "12"))
+        _echo_to = min(TIMEOUT, float(os.environ.get("ECHO_TIMEOUT", "6")))
         for host, dport, path_, _ in IP_ECHO_SOURCES[:_echo_budget]:
             try:
                 data = socks5_http(port, host, path_, _echo_to, dport)
