@@ -882,9 +882,11 @@ def probe(node):
 
         # 2. 尝试通过代理拿真实出口 IP（拿不到不判死，仅用于 ASN 过滤）
         exit_ip = None
-        for host, dport, path_, _ in IP_ECHO_SOURCES:
+        _echo_budget = int(os.environ.get("ECHO_TRIES", "4"))
+        _echo_to = min(TIMEOUT, float(os.environ.get("ECHO_TIMEOUT", "5")))
+        for host, dport, path_, _ in IP_ECHO_SOURCES[:_echo_budget]:
             try:
-                data = socks5_http(port, host, path_, TIMEOUT, dport)
+                data = socks5_http(port, host, path_, _echo_to, dport)
                 if data and re.match(rb"HTTP/1\.[01] (200|204|301|302)", data):
                     body = data.split(b"\r\n\r\n", 1)[-1]
                     m = IPV4_RE.search(body)
@@ -893,7 +895,6 @@ def probe(node):
                         break
             except Exception:
                 continue
-
         # 3. ASN 机房过滤（仅在成功拿到 exit_ip 时生效，且查询失败不判死）
         if exit_ip:
             try:
