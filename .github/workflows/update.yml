@@ -47,12 +47,13 @@ jobs:
         env:
           EXTRA_SUB_URL: ${{ secrets.EXTRA_SUB_URL }}
           WORKERS: "48"
-          PROBE_TIMEOUT: "2"
+          PROBE_TIMEOUT: "8"
           KEEP: "1000"
           MAX_NODES: "12000"
           MAX_PER_SUBNET: "2"
-          LATENCY_MAX: "1.5"
+          LATENCY_MAX: "3.0"
           UNIQUE_IP: "1"
+          STRICT_EXIT_IP: "1"
           INCLUDE_UNPROBED: "0"
         run: python3 subhub.py
 
