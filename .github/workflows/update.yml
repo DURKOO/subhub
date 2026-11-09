@@ -46,7 +46,7 @@ jobs:
       - name: 抓取 + 测速 + 生成订阅
         env:
           EXTRA_SUB_URL: ${{ secrets.EXTRA_SUB_URL }}
-          WORKERS: "48"
+          WORKERS: "128"
           PROBE_TIMEOUT: "8"
           KEEP: "1000"
           MAX_NODES: "12000"
@@ -54,6 +54,8 @@ jobs:
           LATENCY_MAX: "3.0"
           UNIQUE_IP: "1"
           STRICT_EXIT_IP: "1"
+          ECHO_TRIES: "12"
+          ECHO_TIMEOUT: "6"
           INCLUDE_UNPROBED: "0"
         run: python3 subhub.py
 
