@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import ssl
 # -*- coding: utf-8 -*-
 """
 SubHub —— 免费节点自动聚合 + 真连可用性测试 + 生成个人订阅
@@ -52,6 +53,7 @@ MAX_PER_SUBNET = int(os.environ.get("MAX_PER_SUBNET", "6"))  # 同一 /24 最多
 LATENCY_MAX = float(os.environ.get("LATENCY_MAX", "8.0"))    # 延迟上限(秒)，0 表示不限
 
 INCLUDE_UNPROBED = os.environ.get("INCLUDE_UNPROBED", "0") in ("1", "true", "True")
+STRICT_EXIT_IP = os.environ.get("STRICT_EXIT_IP", "1") not in ("0", "false", "False", "")  # 拿不到出口IP不发布
 MAX_NODES = int(os.environ.get("MAX_NODES", "800"))
 OK_DECAY = float(os.environ.get("OK_DECAY", "0.95"))
 
@@ -65,11 +67,21 @@ IPV4_RE = re.compile(rb"\b((?:\d{1,3}\.){3}\d{1,3})\b")
 
 # 出口 IP 回显源：全部走明文 80 端口，经代理请求，省去 TLS 开销
 # (host, port, path, 解析方式)
+# 出口 IP 回显源：80 明文 + 443 TLS 双通道，覆盖只放行 443 的节点
+# (host, port, path, 解析方式)
 IP_ECHO_SOURCES = (
     ("api.ipify.org", 80, "/", "text"),
     ("ip-api.com", 80, "/line/?fields=query", "text"),
     ("ifconfig.me", 80, "/ip", "text"),
     ("ip.3322.net", 80, "/", "text"),
+    ("myip.ipip.net", 80, "/", "text"),
+    ("api.ipify.org", 443, "/", "text"),
+    ("ifconfig.me", 443, "/ip", "text"),
+    ("ipinfo.io", 443, "/ip", "text"),
+    ("api.ip.sb", 443, "/ip", "text"),
+    ("ipv4.icanhazip.com", 443, "/", "text"),
+    ("checkip.amazonaws.com", 443, "/", "text"),
+    ("www.cloudflare.com", 443, "/cdn-cgi/trace", "text"),
 )
 
 _ASN_CACHE = {}
@@ -780,7 +792,8 @@ def start_engine(engine, outbound, port):
 # ------------------------------------------------- SOCKS5 通道
 
 def socks5_http(port, host, path, timeout, dst_port=80):
-    """经本地 SOCKS5 以域名方式 CONNECT 到 host:dst_port，发一个 HTTP/1.1 GET。"""
+    """经本地 SOCKS5 以域名方式 CONNECT 到 host:dst_port，发一个 HTTP/1.1 GET。
+    dst_port=443 时自动套 TLS（不校验证书），用于只放行 443 的节点。"""
     s = socket.create_connection(("127.0.0.1", port), timeout=timeout)
     try:
         s.settimeout(timeout)
@@ -800,6 +813,12 @@ def socks5_http(port, host, path, timeout, dst_port=80):
             recvn(s, n + 2)
         elif atyp == 4:
             recvn(s, 16 + 2)
+        if dst_port == 443:
+            _ctx = ssl.create_default_context()
+            _ctx.check_hostname = False
+            _ctx.verify_mode = ssl.CERT_NONE
+            s = _ctx.wrap_socket(s, server_hostname=host)
+            s.settimeout(timeout)
         req = ("GET %s HTTP/1.1\r\nHost: %s\r\nUser-Agent: %s\r\n"
                "Accept: */*\r\nConnection: close\r\n\r\n" % (path, host, UA))
         s.sendall(req.encode())
@@ -811,9 +830,10 @@ def socks5_http(port, host, path, timeout, dst_port=80):
             data += c
         return data
     finally:
-        s.close()
-
-
+        try:
+            s.close()
+        except Exception:
+            pass
 def get_exit_ip(port, timeout):
     """经代理真实查询出口 IP；多个回显源轮换，全部失败返回 None。"""
     for host, dport, path, _ in IP_ECHO_SOURCES:
@@ -985,8 +1005,8 @@ def main():
             h["latency"] = round(lat, 3)
             history[node["key"]] = h
             node["latency"] = lat
-            if False: # 放宽策略，不再直接淘汰没有 exit_ip 的节点
-                # 严格模式：拿不到真实出口 IP 直接淘汰
+            if STRICT_EXIT_IP and not exit_ip:
+                # 严格模式：拿不到真实出口 IP 的节点一律不发布
                 ip_unknown += 1
                 continue
             node["exit_ip"] = exit_ip
@@ -1176,40 +1196,36 @@ def main():
     cand_body = "\n".join(n["uri"] for n in nodes.values()) + "\n"
     (OUT / "sub_candidates.txt").write_text(cand_body, encoding="utf-8")
     print("   候选池 sub_candidates.txt: %d 个节点" % len(nodes))
-    # ===== 精选：出口 host 唯一 =====
-    def _host_of(u):
-        try:
-            s = re.sub(r'^[a-z0-9]+://', '', u)
-            s = s.split('#')[0]
-            if '@' in s:
-                s = s.split('@', 1)[1]
-            s = s.split('?')[0]
-            s = re.sub(r':\d+$', '', s)
-            return s.strip('[]').lower()
-        except Exception:
-            return ""
-
+    # ===== 精选：按实测出口 IP 唯一（同一出口只留 1 条）=====
     def _net24(h):
-        m = re.match(r'^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.\d{1,3}$', h)
-        return ".".join(m.groups()) if m else h
+        m = re.match(r'^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.\d{1,3}$', str(h or ""))
+        return ".".join(m.groups()) if m else ""
 
-    seen_h, seen_n = set(), set()
-    premium = []
-    for u in safe_uris:
-        h = _host_of(u)
-        if not h or h in seen_h:
+    seen_exit, seen_n24, premium = set(), set(), []
+    for n in keep:
+        u = n["uri"]
+        if ("type=xhttp" in u) or ("extra=" in u) or ("%7B" in u) or ("%7D" in u):
             continue
-        n24 = _net24(h)
-        if n24 in seen_n:
+        u = u.replace("?&", "?").replace("&&", "&").replace("=%2F", "=/").replace("=%2f", "=/")
+        _s = sanitize_uri_name(u, len(premium), n["proto"], n["host"], n["port"])
+        if _s is None:
             continue
-        seen_h.add(h)
-        seen_n.add(n24)
-        premium.append(u)
+        ex = n.get("exit_ip") or ""
+        n24 = _net24(ex)
+        if ex:
+            if ex in seen_exit:
+                continue
+            if n24 and n24 in seen_n24:
+                continue
+            seen_exit.add(ex)
+            if n24:
+                seen_n24.add(n24)
+        premium.append(_s)
     prem_body = "\n".join(premium) + "\n"
     (OUT / "sub_premium.txt").write_text(prem_body, encoding="utf-8")
     (OUT / "sub_premium.b64").write_text(
         base64.b64encode(prem_body.encode()).decode() + "\n", encoding="utf-8")
-    print("   精选 sub_premium: %d 个唯一出口（每 /24 仅 1 个）" % len(premium))
+    print("   精选 sub_premium: %d 条（出口IP唯一 + 每/24仅1条）" % len(premium))
     save_json(OUT / "stats.json", {
         "updated": time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime()),
         "scraped": len(raw_lines),
