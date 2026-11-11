@@ -1,71 +1,49 @@
 {
- "updated": "2026-11-11 06:41:00 UTC",
- "scraped": 11588,
- "parsed": 8112,
+ "updated": "2026-11-11 19:51:34 UTC",
+ "scraped": 11561,
+ "parsed": 8100,
  "protocols": {
-  "shadowsocks": 2047,
-  "trojan": 693,
+  "shadowsocks": 2039,
+  "trojan": 697,
   "shadowsocksr": 64,
-  "vmess": 4243,
-  "hysteria2": 53,
-  "vless": 1011,
+  "vmess": 4275,
+  "hysteria2": 49,
+  "vless": 975,
   "tuic": 1
  },
- "alive": 216,
+ "alive": 215,
  "unprobed_skipped": 0,
- "exit_ip_fallback_dns": 2284,
+ "exit_ip_fallback_dns": 2244,
  "unique_ip": true,
- "ip_duplicates_removed": 57,
+ "ip_duplicates_removed": 64,
  "latency_max": 3.0,
- "latency_dropped": 3,
- "subnet_duplicates_removed": 80,
+ "latency_dropped": 0,
+ "subnet_duplicates_removed": 69,
  "max_per_subnet": 2,
- "published": 216,
- "avg_latency": 0.132,
+ "published": 215,
+ "avg_latency": 0.162,
  "best": [
+  {
+   "name": "🇺🇸US-167.88.61.52-0084",
+   "host": "167.88.61.52",
+   "port": 443,
+   "exit_ip": "167.88.61.198",
+   "ip_src": "echo",
+   "latency": 0.023,
+   "proto": "trojan",
+   "engine": "xray",
+   "history_ok": 28
+  },
   {
    "name": "🇺🇸US-198.98.53.130-0253",
    "host": "198.98.53.130",
    "port": 443,
    "exit_ip": "198.98.53.130",
    "ip_src": "echo",
-   "latency": 0.017,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 56
-  },
-  {
-   "name": "🇬🇧GB-82.38.31.162-0193",
-   "host": "82.38.31.162",
-   "port": 443,
-   "exit_ip": "193.29.139.221",
-   "ip_src": "echo",
-   "latency": 0.109,
+   "latency": 0.077,
    "proto": "shadowsocks",
    "engine": "xray",
    "history_ok": 57
-  },
-  {
-   "name": "🇺🇸US-167.88.61.52-0084",
-   "host": "167.88.61.52",
-   "port": 443,
-   "exit_ip": "167.88.61.85",
-   "ip_src": "echo",
-   "latency": 0.087,
-   "proto": "trojan",
-   "engine": "xray",
-   "history_ok": 27
-  },
-  {
-   "name": "KZ 🇰🇿 | @Raydikalx | 2737BA",
-   "host": "3h-kazakhstan1.09vpn.com",
-   "port": 80,
-   "exit_ip": "38.107.234.57",
-   "ip_src": "echo",
-   "latency": 0.191,
-   "proto": "vmess",
-   "engine": "xray",
-   "history_ok": 29
   },
   {
    "name": "🇬🇧GB-82.38.31.170-0241",
@@ -73,10 +51,21 @@
    "port": 443,
    "exit_ip": "193.29.139.172",
    "ip_src": "echo",
-   "latency": 0.209,
+   "latency": 0.15,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 57
+   "history_ok": 58
+  },
+  {
+   "name": "🇬🇧GB-82.38.31.162-0193",
+   "host": "82.38.31.162",
+   "port": 443,
+   "exit_ip": "193.29.139.221",
+   "ip_src": "echo",
+   "latency": 0.236,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 58
   },
   {
    "name": "vless-1855695735",
@@ -84,10 +73,54 @@
    "port": 443,
    "exit_ip": "185.95.231.156",
    "ip_src": "echo",
-   "latency": 0.012,
+   "latency": 0.056,
    "proto": "vless",
    "engine": "xray",
-   "history_ok": 41
+   "history_ok": 42
+  },
+  {
+   "name": "🇺🇸US-169.197.140.218-0138",
+   "host": "169.197.140.218",
+   "port": 443,
+   "exit_ip": "169.197.140.214",
+   "ip_src": "echo",
+   "latency": 0.071,
+   "proto": "trojan",
+   "engine": "xray",
+   "history_ok": 25
+  },
+  {
+   "name": "KZ 🇰🇿 | @Raydikalx | 6DBA9A",
+   "host": "3h-kazakhstan1.09vpn.com",
+   "port": 80,
+   "exit_ip": "38.107.234.57",
+   "ip_src": "echo",
+   "latency": 0.278,
+   "proto": "vmess",
+   "engine": "xray",
+   "history_ok": 30
+  },
+  {
+   "name": "🆔vpnbaz 🔒 VL-TCP- ❔ XX 246ms",
+   "host": "tgfree.rush-server.com",
+   "port": 443,
+   "exit_ip": "46.183.217.146",
+   "ip_src": "echo",
+   "latency": 0.259,
+   "proto": "vless",
+   "engine": "xray",
+   "history_ok": 23
+  },
+  {
+   "name": "@vpnbaz",
+   "host": "130.49.161.70",
+   "port": 443,
+   "exit_ip": "130.49.161.70",
+   "ip_src": "echo",
+   "latency": 0.146,
+   "proto": "hysteria2",
+   "engine": "singbox",
+   "history_ok": 40
   },
   {
    "name": "DE 🇩🇪 | @Raydikalx | E6F5E7",
@@ -95,43 +128,10 @@
    "port": 443,
    "exit_ip": "45.131.153.56",
    "ip_src": "echo",
-   "latency": 0.108,
+   "latency": 0.629,
    "proto": "vmess",
    "engine": "xray",
-   "history_ok": 36
-  },
-  {
-   "name": "🇺🇸US-169.197.140.218-0138",
-   "host": "169.197.140.218",
-   "port": 443,
-   "exit_ip": "169.197.140.218",
-   "ip_src": "echo",
-   "latency": 0.035,
-   "proto": "trojan",
-   "engine": "xray",
-   "history_ok": 24
-  },
-  {
-   "name": "🆔vpnbaz 🔒 VL-TCP- ❔ XX 210ms",
-   "host": "tgfree.rush-server.com",
-   "port": 443,
-   "exit_ip": "46.183.217.146",
-   "ip_src": "echo",
-   "latency": 0.171,
-   "proto": "vless",
-   "engine": "xray",
-   "history_ok": 22
-  },
-  {
-   "name": "@confiig_hub #1",
-   "host": "130.49.161.70",
-   "port": 443,
-   "exit_ip": "130.49.161.70",
-   "ip_src": "echo",
-   "latency": 0.091,
-   "proto": "hysteria2",
-   "engine": "singbox",
-   "history_ok": 39
+   "history_ok": 37
   }
  ]
 }
