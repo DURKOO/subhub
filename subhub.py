@@ -1282,8 +1282,25 @@ def main():
     })
     save_json(STATE / "seen.json", history)
     print("   已发布 %d 个节点 -> public/sub_base64.txt" % len(keep))
-    return 0
+
+
+def _run_with_retry():
+    """主流程外层重试：瞬时异常不再整批失败（修复 run #70 秒挂问题）。"""
+    last = 1
+    for i in range(3):
+        try:
+            rc = main()
+            if rc == 0:
+                return 0
+            last = rc
+            print("[!] main() 返回 %s（第 %d/3 次）" % (rc, i + 1))
+        except Exception as e:
+            print("[!] main() 异常: %r（第 %d/3 次）" % (e, i + 1))
+        if i < 2:
+            time.sleep(20 * (i + 1))
+    print("[x] 主流程 3 次均失败，保留上一次订阅")
+    return last
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(_run_with_retry())
