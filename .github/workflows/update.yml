@@ -51,11 +51,11 @@ jobs:
           KEEP: "1000"
           MAX_NODES: "12000"
           MAX_PER_SUBNET: "2"
-          LATENCY_MAX: "3.0"
+          LATENCY_MAX: "1.5"
           UNIQUE_IP: "1"
           STRICT_EXIT_IP: "1"
-          ECHO_TRIES: "12"
-          ECHO_TIMEOUT: "6"
+          ECHO_TRIES: "20"
+          ECHO_TIMEOUT: "5"
           INCLUDE_UNPROBED: "0"
         run: python3 subhub.py
 
