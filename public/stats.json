@@ -1,81 +1,70 @@
 {
- "updated": "2026-11-17 08:11:42 UTC",
- "scraped": 11693,
- "parsed": 8304,
+ "updated": "2026-11-17 21:11:24 UTC",
+ "scraped": 11632,
+ "parsed": 8305,
  "protocols": {
-  "shadowsocks": 2023,
-  "trojan": 671,
+  "shadowsocks": 2010,
+  "trojan": 677,
+  "vmess": 4513,
   "shadowsocksr": 64,
-  "vmess": 4498,
-  "hysteria2": 64,
-  "vless": 984
+  "hysteria2": 54,
+  "vless": 987
  },
- "alive": 195,
+ "alive": 196,
  "unprobed_skipped": 0,
- "exit_ip_fallback_dns": 2425,
+ "exit_ip_fallback_dns": 2412,
  "unique_ip": true,
- "ip_duplicates_removed": 68,
+ "ip_duplicates_removed": 62,
  "latency_max": 1.5,
  "latency_dropped": 1,
  "subnet_duplicates_removed": 65,
  "max_per_subnet": 2,
- "published": 195,
- "avg_latency": 0.13,
+ "published": 196,
+ "avg_latency": 0.14,
  "best": [
   {
-   "name": "🇪🇸 西班牙 | ESP",
-   "host": "66.163.118.113",
+   "name": "🇺🇸[openproxylist.com] vless-US",
+   "host": "136.176.65.251",
    "port": 443,
-   "exit_ip": "66.163.118.113",
+   "exit_ip": "136.176.65.251",
    "ip_src": "echo",
-   "latency": 0.12,
+   "latency": 0.044,
    "proto": "vless",
    "engine": "xray",
-   "history_ok": 33
+   "history_ok": 34
   },
   {
-   "name": "🆔madshopx 🔒 VL-TCP- 🇺🇸 US 34ms",
-   "host": "169.40.42.231",
-   "port": 443,
-   "exit_ip": "185.195.57.177",
+   "name": "🇮🇷[openproxylist.com] vless-IR",
+   "host": "198.16.113.218",
+   "port": 8443,
+   "exit_ip": "185.211.59.152",
    "ip_src": "echo",
-   "latency": 0.12,
+   "latency": 0.121,
    "proto": "vless",
    "engine": "xray",
    "history_ok": 36
   },
   {
-   "name": "Channel : @Daily_Configs",
-   "host": "87.248.149.50",
-   "port": 443,
-   "exit_ip": "176.65.136.38",
-   "ip_src": "echo",
-   "latency": 0.126,
-   "proto": "vless",
-   "engine": "xray",
-   "history_ok": 25
-  },
-  {
-   "name": "🇰🇷KR-158.247.253.243-0202",
+   "name": "🇰🇷KR-158.247.253.243-0159",
    "host": "158.247.253.243",
    "port": 443,
    "exit_ip": "158.247.253.243",
    "ip_src": "echo",
-   "latency": 0.174,
+   "latency": 0.175,
    "proto": "trojan",
    "engine": "xray",
-   "history_ok": 34
+   "history_ok": 37
   },
   {
-   "name": "🇬🇧GB-82.38.31.162-0233",
+   "name": "🇬🇧GB-82.38.31.162-0178",
    "host": "82.38.31.162",
    "port": 443,
    "exit_ip": "193.29.139.221",
    "ip_src": "echo",
-   "latency": 0.119,
+   "latency": 0.12,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 90
+   "history_ok": 93
   },
   {
    "name": "vless-1855695735",
@@ -83,54 +72,65 @@
    "port": 443,
    "exit_ip": "185.95.231.156",
    "ip_src": "echo",
-   "latency": 0.029,
+   "latency": 0.035,
    "proto": "vless",
    "engine": "xray",
-   "history_ok": 74
+   "history_ok": 77
   },
   {
-   "name": "🇨🇭CH-208.69.78.33-0277",
+   "name": "🏳[openproxylist.com] vless-",
+   "host": "94.183.234.245",
+   "port": 443,
+   "exit_ip": "149.36.51.149",
+   "ip_src": "echo",
+   "latency": 0.144,
+   "proto": "vless",
+   "engine": "xray",
+   "history_ok": 43
+  },
+  {
+   "name": "🇺🇸US-167.88.61.52-0127",
+   "host": "167.88.61.52",
+   "port": 443,
+   "exit_ip": "167.88.61.175",
+   "ip_src": "echo",
+   "latency": 0.048,
+   "proto": "trojan",
+   "engine": "xray",
+   "history_ok": 63
+  },
+  {
+   "name": "🇨🇭CH-208.69.78.33-0148",
    "host": "208.69.78.33",
    "port": 443,
-   "exit_ip": "208.69.78.222",
+   "exit_ip": "208.69.78.60",
    "ip_src": "echo",
-   "latency": 0.157,
+   "latency": 0.168,
    "proto": "trojan",
    "engine": "xray",
-   "history_ok": 50
+   "history_ok": 53
   },
   {
-   "name": "🇳🇱NL-66.163.127.225-0588",
-   "host": "66.163.127.225",
+   "name": "🇺🇸US-198.98.53.130-0255",
+   "host": "198.98.53.130",
    "port": 443,
-   "exit_ip": "66.163.127.155",
+   "exit_ip": "198.98.53.130",
    "ip_src": "echo",
-   "latency": 0.111,
-   "proto": "trojan",
+   "latency": 0.044,
+   "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 34
+   "history_ok": 92
   },
   {
-   "name": "🇮🇷[openproxylist.com] vless-IR",
-   "host": "198.16.113.221",
-   "port": 8443,
-   "exit_ip": "185.211.59.31",
-   "ip_src": "echo",
-   "latency": 0.116,
-   "proto": "vless",
-   "engine": "xray",
-   "history_ok": 40
-  },
-  {
-   "name": "🇩🇪DE-193.108.119.193-0326",
-   "host": "193.108.119.193",
+   "name": "🇬🇧GB-141.98.101.178-0441",
+   "host": "141.98.101.178",
    "port": 443,
-   "exit_ip": "193.108.119.193",
+   "exit_ip": "141.98.101.178",
    "ip_src": "echo",
-   "latency": 0.113,
-   "proto": "trojan",
+   "latency": 0.109,
+   "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 49
+   "history_ok": 31
   }
  ]
 }
