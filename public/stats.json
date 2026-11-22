@@ -1,59 +1,37 @@
 {
- "updated": "2026-11-22 07:06:17 UTC",
- "scraped": 11618,
- "parsed": 8225,
+ "updated": "2026-11-22 19:57:38 UTC",
+ "scraped": 11603,
+ "parsed": 8277,
  "protocols": {
-  "shadowsocks": 2009,
+  "shadowsocks": 2008,
   "trojan": 663,
-  "vmess": 4591,
+  "vmess": 4609,
   "shadowsocksr": 64,
-  "hysteria2": 69,
-  "vless": 829
+  "hysteria2": 81,
+  "vless": 852
  },
- "alive": 189,
+ "alive": 173,
  "unprobed_skipped": 0,
- "exit_ip_fallback_dns": 2314,
+ "exit_ip_fallback_dns": 2247,
  "unique_ip": true,
- "ip_duplicates_removed": 70,
+ "ip_duplicates_removed": 56,
  "latency_max": 1.5,
- "latency_dropped": 0,
- "subnet_duplicates_removed": 63,
+ "latency_dropped": 2,
+ "subnet_duplicates_removed": 65,
  "max_per_subnet": 2,
- "published": 189,
- "avg_latency": 0.119,
+ "published": 173,
+ "avg_latency": 0.116,
  "best": [
-  {
-   "name": "🆔v2ray1_ng 🔒 VL-TCP- ❔ XX 8ms",
-   "host": "169.40.42.231",
-   "port": 443,
-   "exit_ip": "185.195.57.177",
-   "ip_src": "echo",
-   "latency": 0.03,
-   "proto": "vless",
-   "engine": "xray",
-   "history_ok": 45
-  },
   {
    "name": "🆔capoit 🔒 VL-TCP- ❔ XX 8ms",
    "host": "169.40.42.89",
    "port": 443,
    "exit_ip": "185.195.57.175",
    "ip_src": "echo",
-   "latency": 0.032,
+   "latency": 0.018,
    "proto": "vless",
    "engine": "xray",
-   "history_ok": 44
-  },
-  {
-   "name": "🇬🇧 英国 | GBR",
-   "host": "136.176.68.34",
-   "port": 443,
-   "exit_ip": "136.176.68.34",
-   "ip_src": "echo",
-   "latency": 0.11,
-   "proto": "vless",
-   "engine": "xray",
-   "history_ok": 33
+   "history_ok": 47
   },
   {
    "name": "🇳🇱[www.v2nodes.com] vless-NL-1... #1",
@@ -61,21 +39,10 @@
    "port": 8443,
    "exit_ip": "146.19.254.171",
    "ip_src": "echo",
-   "latency": 0.115,
+   "latency": 0.131,
    "proto": "vless",
    "engine": "xray",
-   "history_ok": 30
-  },
-  {
-   "name": "🇰🇷KR-158.247.253.243-0192",
-   "host": "158.247.253.243",
-   "port": 443,
-   "exit_ip": "158.247.253.243",
-   "ip_src": "echo",
-   "latency": 0.168,
-   "proto": "trojan",
-   "engine": "xray",
-   "history_ok": 61
+   "history_ok": 33
   },
   {
    "name": "vless-1855695735",
@@ -83,21 +50,32 @@
    "port": 443,
    "exit_ip": "185.95.231.156",
    "ip_src": "echo",
-   "latency": 0.031,
+   "latency": 0.008,
    "proto": "vless",
    "engine": "xray",
-   "history_ok": 101
+   "history_ok": 104
+  },
+  {
+   "name": "🇰🇷KR-158.247.253.243-0192",
+   "host": "158.247.253.243",
+   "port": 443,
+   "exit_ip": "158.247.253.243",
+   "ip_src": "echo",
+   "latency": 0.236,
+   "proto": "trojan",
+   "engine": "xray",
+   "history_ok": 64
   },
   {
    "name": "🇺🇸US-167.88.61.52-0096",
    "host": "167.88.61.52",
    "port": 443,
-   "exit_ip": "167.88.61.198",
+   "exit_ip": "167.88.61.52",
    "ip_src": "echo",
-   "latency": 0.057,
+   "latency": 0.098,
    "proto": "trojan",
    "engine": "xray",
-   "history_ok": 87
+   "history_ok": 90
   },
   {
    "name": "🇬🇧GB-82.38.31.162-0184",
@@ -105,10 +83,43 @@
    "port": 443,
    "exit_ip": "193.29.139.221",
    "ip_src": "echo",
-   "latency": 0.156,
+   "latency": 0.168,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 117
+   "history_ok": 120
+  },
+  {
+   "name": "FR 🇫🇷 | @Raydikalx | B93E40",
+   "host": "fr1.vmess.site",
+   "port": 443,
+   "exit_ip": "130.49.179.227",
+   "ip_src": "echo",
+   "latency": 0.176,
+   "proto": "vmess",
+   "engine": "xray",
+   "history_ok": 25
+  },
+  {
+   "name": "🆔v2ray1_ng 🔒 VL-TCP- ❔ XX 7ms",
+   "host": "169.40.42.231",
+   "port": 443,
+   "exit_ip": "185.195.57.177",
+   "ip_src": "echo",
+   "latency": 0.35,
+   "proto": "vless",
+   "engine": "xray",
+   "history_ok": 48
+  },
+  {
+   "name": "KZ 🇰🇿 | @Raydikalx | D0BDC9",
+   "host": "38.107.234.57",
+   "port": 80,
+   "exit_ip": "38.107.234.57",
+   "ip_src": "echo",
+   "latency": 0.222,
+   "proto": "vmess",
+   "engine": "xray",
+   "history_ok": 30
   },
   {
    "name": "🇺🇸US-198.98.53.130-0160",
@@ -116,21 +127,10 @@
    "port": 443,
    "exit_ip": "198.98.53.130",
    "ip_src": "echo",
-   "latency": 0.041,
+   "latency": 0.08,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 116
-  },
-  {
-   "name": "🇬🇧GB-141.98.101.178-0236",
-   "host": "141.98.101.178",
-   "port": 443,
-   "exit_ip": "141.98.101.178",
-   "ip_src": "echo",
-   "latency": 0.111,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 55
+   "history_ok": 119
   }
  ]
 }
