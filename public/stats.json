@@ -1,26 +1,26 @@
 {
- "updated": "2026-11-24 00:09:38 UTC",
- "scraped": 11519,
- "parsed": 8198,
+ "updated": "2026-11-24 10:10:49 UTC",
+ "scraped": 11589,
+ "parsed": 8233,
  "protocols": {
-  "shadowsocks": 2003,
-  "trojan": 663,
-  "vmess": 4645,
+  "shadowsocks": 2008,
+  "trojan": 675,
+  "vmess": 4654,
   "shadowsocksr": 64,
-  "hysteria2": 57,
-  "vless": 766
+  "hysteria2": 73,
+  "vless": 759
  },
- "alive": 183,
+ "alive": 164,
  "unprobed_skipped": 0,
- "exit_ip_fallback_dns": 2258,
+ "exit_ip_fallback_dns": 2331,
  "unique_ip": true,
- "ip_duplicates_removed": 71,
+ "ip_duplicates_removed": 53,
  "latency_max": 1.5,
  "latency_dropped": 0,
- "subnet_duplicates_removed": 65,
+ "subnet_duplicates_removed": 63,
  "max_per_subnet": 2,
- "published": 183,
- "avg_latency": 0.123,
+ "published": 164,
+ "avg_latency": 0.125,
  "best": [
   {
    "name": "🆔capoit 🔒 VL-TCP- ❔ XX 34ms",
@@ -28,76 +28,10 @@
    "port": 443,
    "exit_ip": "185.195.57.175",
    "ip_src": "echo",
-   "latency": 0.018,
+   "latency": 0.032,
    "proto": "vless",
    "engine": "xray",
-   "history_ok": 50
-  },
-  {
-   "name": "vless-1855695735",
-   "host": "185.95.231.156",
-   "port": 443,
-   "exit_ip": "185.95.231.156",
-   "ip_src": "echo",
-   "latency": 0.007,
-   "proto": "vless",
-   "engine": "xray",
-   "history_ok": 107
-  },
-  {
-   "name": "🇬🇧GB-82.38.31.162-0213",
-   "host": "82.38.31.162",
-   "port": 443,
-   "exit_ip": "193.29.139.221",
-   "ip_src": "echo",
-   "latency": 0.111,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 123
-  },
-  {
-   "name": "🇺🇸US-167.88.61.52-0096",
-   "host": "167.88.61.52",
-   "port": 443,
-   "exit_ip": "167.88.61.198",
-   "ip_src": "echo",
-   "latency": 0.073,
-   "proto": "trojan",
-   "engine": "xray",
-   "history_ok": 93
-  },
-  {
-   "name": "FR 🇫🇷 | @Raydikalx | B93E40",
-   "host": "fr1.vmess.site",
-   "port": 443,
-   "exit_ip": "130.49.179.227",
-   "ip_src": "echo",
-   "latency": 0.137,
-   "proto": "vmess",
-   "engine": "xray",
-   "history_ok": 28
-  },
-  {
-   "name": "🇺🇸US-198.98.53.130-0257",
-   "host": "198.98.53.130",
-   "port": 443,
-   "exit_ip": "198.98.53.130",
-   "ip_src": "echo",
-   "latency": 0.014,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 122
-  },
-  {
-   "name": "🇰🇿KZ-38.107.234.57-1049",
-   "host": "38.107.234.57",
-   "port": 80,
-   "exit_ip": "38.107.234.57",
-   "ip_src": "echo",
-   "latency": 0.248,
-   "proto": "vmess",
-   "engine": "xray",
-   "history_ok": 33
+   "history_ok": 53
   },
   {
    "name": "🆔ar14n24b 🔒 VL-TCP- ❔ XX 34ms",
@@ -105,10 +39,32 @@
    "port": 443,
    "exit_ip": "162.120.69.88",
    "ip_src": "echo",
-   "latency": 0.009,
+   "latency": 0.037,
    "proto": "vless",
    "engine": "xray",
-   "history_ok": 21
+   "history_ok": 24
+  },
+  {
+   "name": "vless-1855695735",
+   "host": "185.95.231.156",
+   "port": 443,
+   "exit_ip": "185.95.231.156",
+   "ip_src": "echo",
+   "latency": 0.035,
+   "proto": "vless",
+   "engine": "xray",
+   "history_ok": 110
+  },
+  {
+   "name": "🇬🇧GB-82.38.31.162-0210",
+   "host": "82.38.31.162",
+   "port": 443,
+   "exit_ip": "193.29.139.221",
+   "ip_src": "echo",
+   "latency": 0.122,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 126
   },
   {
    "name": "🏳[openproxylist.com] vless-",
@@ -116,21 +72,65 @@
    "port": 443,
    "exit_ip": "185.195.57.177",
    "ip_src": "echo",
-   "latency": 0.008,
+   "latency": 0.035,
    "proto": "vless",
    "engine": "xray",
-   "history_ok": 20
+   "history_ok": 23
   },
   {
-   "name": "🇨🇭CH-208.69.78.33-0204",
-   "host": "208.69.78.33",
+   "name": "🇺🇸US-167.88.61.52-0104",
+   "host": "167.88.61.52",
    "port": 443,
-   "exit_ip": "208.69.78.159",
+   "exit_ip": "167.88.61.52",
    "ip_src": "echo",
-   "latency": 0.11,
+   "latency": 0.127,
    "proto": "trojan",
    "engine": "xray",
-   "history_ok": 83
+   "history_ok": 96
+  },
+  {
+   "name": "🇺🇸US-198.98.53.130-0267",
+   "host": "198.98.53.130",
+   "port": 443,
+   "exit_ip": "198.98.53.130",
+   "ip_src": "echo",
+   "latency": 0.028,
+   "proto": "shadowsocks",
+   "engine": "xray",
+   "history_ok": 125
+  },
+  {
+   "name": "🇰🇿KZ-38.107.234.57-1142",
+   "host": "38.107.234.57",
+   "port": 80,
+   "exit_ip": "38.107.234.57",
+   "ip_src": "echo",
+   "latency": 0.208,
+   "proto": "vmess",
+   "engine": "xray",
+   "history_ok": 36
+  },
+  {
+   "name": "🆔ar14n24b 🔒 VL-TCP- ❔ XX 120ms",
+   "host": "195.206.235.202",
+   "port": 443,
+   "exit_ip": "93.123.85.81",
+   "ip_src": "echo",
+   "latency": 0.124,
+   "proto": "vless",
+   "engine": "xray",
+   "history_ok": 24
+  },
+  {
+   "name": "🆔ar14n24b 🔒 VL-TCP- ❔ XX 157ms",
+   "host": "83.217.201.82",
+   "port": 443,
+   "exit_ip": "46.183.217.146",
+   "ip_src": "echo",
+   "latency": 0.156,
+   "proto": "vless",
+   "engine": "xray",
+   "history_ok": 26
   }
  ]
 }
