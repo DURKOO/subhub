@@ -1,48 +1,48 @@
 {
- "updated": "2026-11-26 08:37:36 UTC",
- "scraped": 11568,
- "parsed": 8248,
+ "updated": "2026-11-26 21:49:50 UTC",
+ "scraped": 11521,
+ "parsed": 8234,
  "protocols": {
-  "shadowsocks": 2012,
-  "trojan": 659,
+  "shadowsocks": 2030,
+  "trojan": 667,
   "shadowsocksr": 63,
-  "vmess": 4675,
-  "hysteria2": 72,
-  "vless": 767
+  "vmess": 4681,
+  "hysteria2": 75,
+  "vless": 718
  },
- "alive": 186,
+ "alive": 180,
  "unprobed_skipped": 0,
- "exit_ip_fallback_dns": 2314,
+ "exit_ip_fallback_dns": 2325,
  "unique_ip": true,
- "ip_duplicates_removed": 58,
+ "ip_duplicates_removed": 66,
  "latency_max": 1.5,
- "latency_dropped": 2,
- "subnet_duplicates_removed": 71,
+ "latency_dropped": 1,
+ "subnet_duplicates_removed": 69,
  "max_per_subnet": 2,
- "published": 186,
- "avg_latency": 0.138,
+ "published": 180,
+ "avg_latency": 0.134,
  "best": [
   {
-   "name": "🆔capoit 🔒 VL-TCP- ❔ XX 21ms",
+   "name": "🆔ar14n24b 🔒 VL-TCP- ❔ XX 172ms",
+   "host": "199.7.140.201",
+   "port": 443,
+   "exit_ip": "199.7.140.201",
+   "ip_src": "echo",
+   "latency": 0.01,
+   "proto": "vless",
+   "engine": "xray",
+   "history_ok": 27
+  },
+  {
+   "name": "🆔capoit 🔒 VL-TCP- ❔ XX 64ms",
    "host": "169.40.42.89",
    "port": 443,
    "exit_ip": "185.195.57.175",
    "ip_src": "echo",
-   "latency": 0.031,
+   "latency": 0.069,
    "proto": "vless",
    "engine": "xray",
-   "history_ok": 62
-  },
-  {
-   "name": "vless-1855695735",
-   "host": "185.95.231.156",
-   "port": 443,
-   "exit_ip": "185.95.231.156",
-   "ip_src": "echo",
-   "latency": 0.031,
-   "proto": "vless",
-   "engine": "xray",
-   "history_ok": 119
+   "history_ok": 65
   },
   {
    "name": "🇺🇸US-167.88.61.52-0120",
@@ -50,21 +50,21 @@
    "port": 443,
    "exit_ip": "167.88.61.52",
    "ip_src": "echo",
-   "latency": 0.062,
+   "latency": 0.027,
    "proto": "trojan",
    "engine": "xray",
-   "history_ok": 105
+   "history_ok": 108
   },
   {
-   "name": "🇺🇸US-198.98.53.130-0228",
-   "host": "198.98.53.130",
+   "name": "vless-1855695722",
+   "host": "185.95.231.156",
    "port": 443,
-   "exit_ip": "198.98.53.130",
+   "exit_ip": "185.95.231.156",
    "ip_src": "echo",
-   "latency": 0.042,
-   "proto": "shadowsocks",
+   "latency": 0.057,
+   "proto": "vless",
    "engine": "xray",
-   "history_ok": 134
+   "history_ok": 119
   },
   {
    "name": "🇬🇧GB-82.38.31.162-0176",
@@ -72,65 +72,65 @@
    "port": 443,
    "exit_ip": "193.29.139.221",
    "ip_src": "echo",
-   "latency": 0.232,
+   "latency": 0.167,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 135
+   "history_ok": 138
   },
   {
-   "name": "西班牙+V2CROSS.COM",
-   "host": "196.196.149.80",
+   "name": "🇺🇸US-198.98.53.130-0228",
+   "host": "198.98.53.130",
    "port": 443,
-   "exit_ip": "45.198.55.40",
+   "exit_ip": "198.98.53.130",
    "ip_src": "echo",
-   "latency": 0.138,
-   "proto": "vless",
-   "engine": "xray",
-   "history_ok": 25
-  },
-  {
-   "name": "爱沙尼亚+V2CROSS.COM",
-   "host": "196.196.148.85",
-   "port": 443,
-   "exit_ip": "193.233.127.62",
-   "ip_src": "echo",
-   "latency": 0.187,
-   "proto": "vless",
-   "engine": "xray",
-   "history_ok": 31
-  },
-  {
-   "name": "🇳🇱NL-158.173.20.171-0166",
-   "host": "158.173.20.171",
-   "port": 443,
-   "exit_ip": "158.173.20.171",
-   "ip_src": "echo",
-   "latency": 0.134,
+   "latency": 0.06,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 76
+   "history_ok": 137
   },
   {
-   "name": "🇬🇧GB-141.98.101.178-0232",
-   "host": "141.98.101.178",
-   "port": 443,
-   "exit_ip": "141.98.101.178",
-   "ip_src": "echo",
-   "latency": 0.129,
-   "proto": "shadowsocks",
-   "engine": "xray",
-   "history_ok": 73
-  },
-  {
-   "name": "🇩🇪 德国 | DEU #2",
+   "name": "🇩🇪[www.v2nodes.com] ss-DE-1624...",
    "host": "47.254.167.157",
    "port": 443,
    "exit_ip": "163.123.193.5",
    "ip_src": "echo",
-   "latency": 0.124,
+   "latency": 0.14,
    "proto": "shadowsocks",
    "engine": "xray",
-   "history_ok": 22
+   "history_ok": 25
+  },
+  {
+   "name": "🆔ar14n24b 🔒 VL-TCP- ❔ XX 201ms",
+   "host": "196.196.148.85",
+   "port": 443,
+   "exit_ip": "193.233.127.62",
+   "ip_src": "echo",
+   "latency": 0.198,
+   "proto": "vless",
+   "engine": "xray",
+   "history_ok": 34
+  },
+  {
+   "name": "🆔ar14n24b 🔒 VL-TCP- ❔ XX 386ms",
+   "host": "user.betust.net",
+   "port": 443,
+   "exit_ip": "50.7.169.213",
+   "ip_src": "echo",
+   "latency": 0.143,
+   "proto": "vless",
+   "engine": "xray",
+   "history_ok": 21
+  },
+  {
+   "name": "KZ 🇰🇿 | @Raydikalx | D0BDC9",
+   "host": "38.107.234.57",
+   "port": 80,
+   "exit_ip": "38.107.234.57",
+   "ip_src": "echo",
+   "latency": 0.228,
+   "proto": "vmess",
+   "engine": "xray",
+   "history_ok": 48
   }
  ]
 }
